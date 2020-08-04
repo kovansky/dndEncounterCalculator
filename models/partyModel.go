@@ -4,7 +4,7 @@ import "github.com/kovansky/dndEncounterCalculator/constants"
 
 type PartyModel struct {
 	PartyPlayers      map[string]PlayerModel
-	PartyAverageLevel float32
+	PartyAverageLevel float64
 	PartyThresholds   map[string]int
 	PartyMinMax       int
 	PartyPerLevel     map[int]int
@@ -28,8 +28,6 @@ func (party PartyModel) Update() PartyModel {
 	}
 
 	for _, player := range party.PartyPlayers {
-		average += player.PlayerLevel
-
 		thresholds["easy"] += constants.EasyThresholds[player.PlayerLevel]
 		thresholds["medium"] += constants.MediumThresholds[player.PlayerLevel]
 		thresholds["hard"] += constants.HardThresholds[player.PlayerLevel]
@@ -45,7 +43,7 @@ func (party PartyModel) Update() PartyModel {
 		perLevel[player.PlayerLevel] += 1
 	}
 
-	party.PartyAverageLevel = float32(average / partySize)
+	party.PartyAverageLevel = party.CalculateAverageLevel()
 	party.PartyThresholds = thresholds
 	party.PartyMinMax = partyMax - partyMin
 	party.PartyPerLevel = perLevel
@@ -69,4 +67,15 @@ func (party PartyModel) RemovePlayer(player string) PartyModel {
 
 func (party PartyModel) RemovePlayer1(player PlayerModel) PartyModel {
 	return party.RemovePlayer(player.PlayerName)
+}
+
+func (party PartyModel) CalculateAverageLevel() float64 {
+	partySize := float64(len(party.PartyPlayers))
+	levels := 0.0
+
+	for _, player := range party.PartyPlayers {
+		levels += float64(player.PlayerLevel)
+	}
+
+	return levels / partySize
 }
