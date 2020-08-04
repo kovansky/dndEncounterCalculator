@@ -11,8 +11,6 @@ type PartyModel struct {
 }
 
 func (party PartyModel) Update() PartyModel {
-	partyMin := 21
-	partyMax := 0
 	perLevel := make(map[int]int)
 
 	for i := 1; i <= 20; i++ {
@@ -21,19 +19,12 @@ func (party PartyModel) Update() PartyModel {
 
 	for _, player := range party.PartyPlayers {
 
-		if player.PlayerLevel < partyMin {
-			partyMin = player.PlayerLevel
-		}
-		if player.PlayerLevel > partyMax {
-			partyMax = player.PlayerLevel
-		}
-
 		perLevel[player.PlayerLevel] += 1
 	}
 
 	party.PartyAverageLevel = party.CalculateAverageLevel()
 	party.PartyThresholds = party.CalculateThresholds()
-	party.PartyMinMax = partyMax - partyMin
+	party.PartyMinMax = party.CalculateMinMax()
 	party.PartyPerLevel = perLevel
 
 	return party
@@ -84,4 +75,20 @@ func (party PartyModel) CalculateThresholds() map[string]int {
 	}
 
 	return thresholds
+}
+
+func (party PartyModel) CalculateMinMax() int {
+	partyMin := 21
+	partyMax := 0
+
+	for _, player := range party.PartyPlayers {
+		if player.PlayerLevel < partyMin {
+			partyMin = player.PlayerLevel
+		}
+		if player.PlayerLevel > partyMax {
+			partyMax = player.PlayerLevel
+		}
+	}
+
+	return partyMax - partyMin
 }
