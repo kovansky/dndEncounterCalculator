@@ -10,7 +10,7 @@ type PartyModel struct {
 	PartyPerLevel     map[int]int
 }
 
-func (party PartyModel) Update() {
+func (party PartyModel) Update() PartyModel {
 	partySize := len(party.PartyPlayers)
 	average := 0
 	thresholds := map[string]int{
@@ -49,4 +49,13 @@ func (party PartyModel) Update() {
 	party.PartyThresholds = thresholds
 	party.PartyMinMax = partyMax - partyMin
 	party.PartyPerLevel = perLevel
+
+	return party
+}
+
+func (party PartyModel) AddPlayer(player PlayerModel) PartyModel {
+	party.PartyPlayers = append(party.PartyPlayers, player)
+	party.Update()
+
+	return party
 }
