@@ -3,7 +3,7 @@ package models
 import "github.com/kovansky/dndEncounterCalculator/constants"
 
 type PartyModel struct {
-	PartyPlayers      []PlayerModel
+	PartyPlayers      map[string]PlayerModel
 	PartyAverageLevel float32
 	PartyThresholds   map[string]int
 	PartyMinMax       int
@@ -54,8 +54,19 @@ func (party PartyModel) Update() PartyModel {
 }
 
 func (party PartyModel) AddPlayer(player PlayerModel) PartyModel {
-	party.PartyPlayers = append(party.PartyPlayers, player)
+	party.PartyPlayers[player.PlayerName] = player
 	party.Update()
 
 	return party
+}
+
+func (party PartyModel) RemovePlayer(player string) PartyModel {
+	delete(party.PartyPlayers, player)
+	party.Update()
+
+	return party
+}
+
+func (party PartyModel) RemovePlayer1(player PlayerModel) PartyModel {
+	return party.RemovePlayer(player.PlayerName)
 }
