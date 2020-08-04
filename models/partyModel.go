@@ -11,14 +11,6 @@ type PartyModel struct {
 }
 
 func (party PartyModel) Update() PartyModel {
-	partySize := len(party.PartyPlayers)
-	average := 0
-	thresholds := map[string]int{
-		"easy":   0,
-		"medium": 0,
-		"hard":   0,
-		"deadly": 0,
-	}
 	partyMin := 21
 	partyMax := 0
 	perLevel := make(map[int]int)
@@ -28,10 +20,6 @@ func (party PartyModel) Update() PartyModel {
 	}
 
 	for _, player := range party.PartyPlayers {
-		thresholds["easy"] += constants.EasyThresholds[player.PlayerLevel]
-		thresholds["medium"] += constants.MediumThresholds[player.PlayerLevel]
-		thresholds["hard"] += constants.HardThresholds[player.PlayerLevel]
-		thresholds["deadly"] += constants.DeadlyThresholds[player.PlayerLevel]
 
 		if player.PlayerLevel < partyMin {
 			partyMin = player.PlayerLevel
@@ -44,7 +32,7 @@ func (party PartyModel) Update() PartyModel {
 	}
 
 	party.PartyAverageLevel = party.CalculateAverageLevel()
-	party.PartyThresholds = thresholds
+	party.PartyThresholds = party.CalculateThresholds()
 	party.PartyMinMax = partyMax - partyMin
 	party.PartyPerLevel = perLevel
 
@@ -78,4 +66,22 @@ func (party PartyModel) CalculateAverageLevel() float64 {
 	}
 
 	return levels / partySize
+}
+
+func (party PartyModel) CalculateThresholds() map[string]int {
+	thresholds := map[string]int{
+		"easy":   0,
+		"medium": 0,
+		"hard":   0,
+		"deadly": 0,
+	}
+
+	for _, player := range party.PartyPlayers {
+		thresholds["easy"] += constants.EasyThresholds[player.PlayerLevel]
+		thresholds["medium"] += constants.MediumThresholds[player.PlayerLevel]
+		thresholds["hard"] += constants.HardThresholds[player.PlayerLevel]
+		thresholds["deadly"] += constants.DeadlyThresholds[player.PlayerLevel]
+	}
+
+	return thresholds
 }
