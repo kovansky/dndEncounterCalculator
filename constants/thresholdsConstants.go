@@ -1,7 +1,7 @@
 package constants
 
 var (
-	easyThresholds = map[int]int{
+	EasyThresholds = map[int]int{
 		1:  25,
 		2:  50,
 		3:  75,
@@ -23,7 +23,7 @@ var (
 		19: 2400,
 		20: 2800,
 	}
-	mediumThresholds = map[int]int{
+	MediumThresholds = map[int]int{
 		1:  50,
 		2:  100,
 		3:  150,
@@ -45,7 +45,7 @@ var (
 		19: 4900,
 		20: 5700,
 	}
-	hardThresholds = map[int]int{
+	HardThresholds = map[int]int{
 		1:  75,
 		2:  150,
 		3:  225,
@@ -67,7 +67,7 @@ var (
 		19: 7300,
 		20: 8500,
 	}
-	deadlyThresholds = map[int]int{
+	DeadlyThresholds = map[int]int{
 		1:  100,
 		2:  200,
 		3:  400,
