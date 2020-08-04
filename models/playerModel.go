@@ -5,6 +5,6 @@ type PlayerModel struct {
 	PlayerLevel int
 }
 
-func NewPlayerModel(playerName string, playerLevel int) *PlayerModel {
-	return &PlayerModel{PlayerName: playerName, PlayerLevel: playerLevel}
+func NewPlayerModel(playerName string, playerLevel int) PlayerModel {
+	return PlayerModel{PlayerName: playerName, PlayerLevel: playerLevel}
 }
