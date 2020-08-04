@@ -1,6 +1,8 @@
 package models
 
-import "github.com/kovansky/dndEncounterCalculator/constants"
+import (
+	"github.com/kovansky/dndEncounterCalculator/constants"
+)
 
 type PartyModel struct {
 	PartyPlayers      map[string]PlayerModel
@@ -10,34 +12,36 @@ type PartyModel struct {
 	PartyPerLevel     map[int]int
 }
 
-func (party PartyModel) Update() PartyModel {
+func NewPartyModel() *PartyModel {
+	return &PartyModel{PartyPlayers: make(map[string]PlayerModel), PartyThresholds: make(map[string]int), PartyPerLevel: make(map[int]int)}
+}
+
+func (party *PartyModel) Update() PartyModel {
 	party.PartyAverageLevel = party.CalculateAverageLevel()
 	party.PartyThresholds = party.CalculateThresholds()
 	party.PartyMinMax = party.CalculateMinMax()
 	party.PartyPerLevel = party.CalculatePerLevel()
 
-	return party
+	return *party
 }
 
-func (party PartyModel) AddPlayer(player PlayerModel) PartyModel {
+func (party *PartyModel) AddPlayer(player PlayerModel) PartyModel {
 	party.PartyPlayers[player.PlayerName] = player
-	party.Update()
 
-	return party
+	return party.Update()
 }
 
-func (party PartyModel) RemovePlayer(player string) PartyModel {
+func (party *PartyModel) RemovePlayer(player string) PartyModel {
 	delete(party.PartyPlayers, player)
-	party.Update()
 
-	return party
+	return party.Update()
 }
 
-func (party PartyModel) RemovePlayer1(player PlayerModel) PartyModel {
+func (party *PartyModel) RemovePlayer1(player PlayerModel) PartyModel {
 	return party.RemovePlayer(player.PlayerName)
 }
 
-func (party PartyModel) CalculateAverageLevel() float64 {
+func (party *PartyModel) CalculateAverageLevel() float64 {
 	partySize := float64(len(party.PartyPlayers))
 	levels := 0.0
 
@@ -48,7 +52,7 @@ func (party PartyModel) CalculateAverageLevel() float64 {
 	return levels / partySize
 }
 
-func (party PartyModel) CalculateThresholds() map[string]int {
+func (party *PartyModel) CalculateThresholds() map[string]int {
 	thresholds := map[string]int{
 		"easy":   0,
 		"medium": 0,
@@ -66,7 +70,7 @@ func (party PartyModel) CalculateThresholds() map[string]int {
 	return thresholds
 }
 
-func (party PartyModel) CalculateMinMax() int {
+func (party *PartyModel) CalculateMinMax() int {
 	partyMin := 21
 	partyMax := 0
 
@@ -82,7 +86,7 @@ func (party PartyModel) CalculateMinMax() int {
 	return partyMax - partyMin
 }
 
-func (party PartyModel) CalculatePerLevel() map[int]int {
+func (party *PartyModel) CalculatePerLevel() map[int]int {
 	perLevel := make(map[int]int)
 
 	for i := 1; i <= 20; i++ {
