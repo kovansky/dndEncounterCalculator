@@ -8,7 +8,7 @@ import (
 func App() {
 	mux := http.NewServeMux()
 	mux.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./webapp/public/"))))
-	mux.HandleFunc("/", party)
+	mux.HandleFunc("/party", party)
 
 	server := &http.Server{
 		Addr:    "127.0.0.1:12346",

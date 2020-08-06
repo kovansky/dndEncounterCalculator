@@ -1,0 +1,71 @@
+@import "fonts.css";
+@import "commons.css";
+
+html, body {
+    width:  600px;
+    height: 550px;
+}
+
+#partyCreator {
+    position:   relative;
+    width:      600px;
+    height:     550px;
+
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+
+#header {
+    position: absolute;
+    width:    540px;
+    height:   95px;
+    left:     30px;
+    top:      10px;
+}
+
+.winTitle {
+    position:    absolute;
+    width:       263px;
+    height:      42px;
+    left:        139px;
+    top:         0;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: normal;
+    font-size:   32px;
+    line-height: 42px;
+    text-align:  center;
+
+    color:       #000000;
+}
+
+.charNew {
+    position: absolute;
+    width:    250px;
+    height:   35px;
+    left:     146px;
+    top:      49px;
+}
+
+.btnText {
+    position:    absolute;
+    top:         6px;
+    right:       20px;
+    width:       179px;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: 300;
+    font-size:   18px;
+    line-height: 24px;
+    text-align:  center;
+}
+
+.btnIcon {
+    position: absolute;
+    top:      8px;
+    left:     10px;
+    width:    20px;
+    height:   20px;
+}
