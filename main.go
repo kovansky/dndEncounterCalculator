@@ -1,22 +1,20 @@
 package main
 
 import (
+	"github.com/kovansky/dndEncounterCalculator/webapp"
 	"github.com/webview/webview"
-	"os"
-	"path/filepath"
 )
 
-var dir string
-
 func main() {
-	dir, _ = filepath.Abs(filepath.Dir(os.Args[0]))
+	go webapp.App()
 
 	wv := webview.New(true)
 	defer wv.Destroy()
 
 	wv.SetTitle("Create your party")
-	wv.SetSize(500, 400, webview.HintFixed)
-	wv.Navigate("http://google.com")
+	wv.SetSize(500, 400, webview.HintMin)
+
+	wv.Navigate("http://127.0.0.1:12346")
 
 	wv.Run()
 }
