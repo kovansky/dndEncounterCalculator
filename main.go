@@ -1,21 +1,22 @@
 package main
 
 import (
-	"fyne.io/fyne/app"
-	"fyne.io/fyne/widget"
+	"github.com/webview/webview"
+	"os"
+	"path/filepath"
 )
 
+var dir string
+
 func main() {
-	a := app.New()
-	w := a.NewWindow("Hello, Fyne!")
+	dir, _ = filepath.Abs(filepath.Dir(os.Args[0]))
 
-	hello := widget.NewLabel("Hello, Fyne! :D")
-	w.SetContent(widget.NewVBox(
-		hello,
-		widget.NewButton("Hi!", func() {
-			hello.SetText("Welcome :)")
-		}),
-	))
+	wv := webview.New(true)
+	defer wv.Destroy()
 
-	w.ShowAndRun()
+	wv.SetTitle("Create your party")
+	wv.SetSize(500, 400, webview.HintFixed)
+	wv.Navigate("http://google.com")
+
+	wv.Run()
 }
