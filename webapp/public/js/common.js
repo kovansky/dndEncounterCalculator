@@ -1,3 +1,3 @@
 function cloneTemplate(templateName, destination) {
-    $(templateName).clone().appendTo(destination)
+    $(templateName).clone().attr('id', '').appendTo(destination)
 }
