@@ -8,3 +8,24 @@
     cursor:     pointer;
     background: #A4A4A4;
 }
+
+.input {
+    background:    #E3E3E3;
+    box-shadow:    2px 4px 6px rgba(0, 0, 0, .25);
+    border-radius: 6px;
+}
+
+::placeholder, :-ms-input-placeholder, ::-ms-input-placeholder {
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: 300;
+    font-size:   18px;
+    line-height: 24px;
+
+    color:       #5F5F5F;
+    opacity:     1;
+}
+
+#templates {
+    display: none;
+}

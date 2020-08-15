@@ -69,3 +69,16 @@ html, body {
     width:    20px;
     height:   20px;
 }
+
+#content {
+    position: absolute;
+    width:    540px;
+    height:   365px;
+    left:     30px;
+    top:      110px;
+}
+
+.charInputContainer {
+    width:  425px;
+    height: 50px;
+}

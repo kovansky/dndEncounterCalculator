@@ -5,6 +5,7 @@
     <title>Create your party</title>
     <script src="/public/libs/jQuery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="/public/css/party.css">
+    <script src="/public/js/common.js"></script>
 </head>
 <body>
 <div id="partyCreator">
@@ -25,4 +26,20 @@
     </div>
 </div>
 </body>
+
+<script src="/public/js/party.js"></script>
+
+<div id="templates">
+    <div id="charInputTmpl" class="tmpl">
+        <div class="charInputContainer">
+            <input type="text" class="input textInput charName" name="charName" placeholder="Character name">
+            <!-- Language -->
+            <input type="number" class="input numInput charLevel" name="charLevel" placeholder="Level">
+            <!-- Language -->
+            <span class="btn icnBtn">
+            <img src="/public/icons/closeIcon.svg" alt="" class="btnIcon">
+        </span>
+        </div>
+    </div>
+</div>
 </html>
