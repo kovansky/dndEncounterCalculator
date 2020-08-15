@@ -1,6 +1,8 @@
 package controllers
 
-import "github.com/webview/webview"
+import (
+	"github.com/webview/webview"
+)
 
 func PartyWindow(wv webview.WebView) {
 	wv.SetTitle("Create your party")
