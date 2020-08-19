@@ -11,7 +11,7 @@ func App() {
 	mux.HandleFunc("/party", party)
 
 	server := &http.Server{
-		Addr:    "127.0.0.1:12344",
+		Addr:    "127.0.0.1:12343",
 		Handler: mux,
 	}
 
