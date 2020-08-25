@@ -99,3 +99,7 @@ func (party *PartyModel) CalculatePerLevel() map[int]int {
 
 	return perLevel
 }
+
+func (party *PartyModel) CountPlayers() int {
+	return len(party.PartyPlayers)
+}

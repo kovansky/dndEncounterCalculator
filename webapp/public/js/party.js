@@ -18,17 +18,20 @@ $(document).ready(function() {
 
         $("#content").find(".charInputContainer").each(function() {
             let char = {
-                name: null,
-                level: null
+                player_name: null,
+                player_level: null
             }
 
-            char.name = $(this).children()[0].value
-            char.level = $(this).children()[1].value
+            char.player_name = $(this).children()[0].value
+            char.player_level = $(this).children()[1].value
 
             characters.push(char)
         })
 
-        console.log(characters)
+        // Declared in Go
+        readParty(characters).then((ret) => {
+            // ToDo: do sth with return value
+        })
 
         // ToDo: invoke go function
     })
