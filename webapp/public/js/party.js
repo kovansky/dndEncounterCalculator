@@ -31,6 +31,7 @@ $(document).ready(function() {
         // Declared in Go
         readParty(characters).then((ret) => {
             // ToDo: do sth with return value
+            $('<p></p>').html(ret).appendTo('#content')
         })
 
         // ToDo: invoke go function
