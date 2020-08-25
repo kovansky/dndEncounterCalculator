@@ -30,8 +30,10 @@ $(document).ready(function() {
 
         // Declared in Go
         readParty(characters).then((ret) => {
-            // ToDo: do sth with return value
-            $('<p></p>').html(ret).appendTo('#content')
+            if((ret !== 0) || (ret === 0 && characters.length !== 0)) {
+                // Declared in go
+                nextWindow()
+            }
         })
 
         // ToDo: invoke go function

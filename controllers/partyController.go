@@ -50,5 +50,13 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
+	err = wv.Bind("nextWindow", func() bool {
+		// ToDo: open next window
+
+		wv.Destroy()
+
+		return true
+	})
+
 	wv.Navigate("http://127.0.0.1:12345/party")
 }
