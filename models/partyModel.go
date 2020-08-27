@@ -10,6 +10,7 @@ type PartyModel struct {
 	PartyThresholds   map[string]int
 	PartyMinMax       int
 	PartyPerLevel     map[int]int
+	PartySize         int
 }
 
 func NewPartyModel() *PartyModel {
@@ -21,6 +22,7 @@ func (party *PartyModel) Update() PartyModel {
 	party.PartyThresholds = party.CalculateThresholds()
 	party.PartyMinMax = party.CalculateMinMax()
 	party.PartyPerLevel = party.CalculatePerLevel()
+	party.PartySize = party.CountPlayers()
 
 	return *party
 }
