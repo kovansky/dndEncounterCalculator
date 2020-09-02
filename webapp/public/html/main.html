@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D&D Encounter Calculator</title> <!-- language -->
+    <script src="/public/libs/jQuery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="/public/css/main.css">
+    <script src="/public/js/common.js"></script>
+</head>
+<body>
+<div id="encounterCreator">
+    <div id="partyDataBox">
+        <div id="partySummary">
+            <span class="blockHeader">
+                Your Party:
+                <!-- language -->
+            </span>
+
+            <span class="block">
+                <span class="dataBold" id="partyDataSize">X</span> players (<span class="dataBold"
+                                                                                  id="partyDataType">X</span> party)<br>
+                <span class="dataBold" id="partyDataAvgLvl">X</span> average level
+                <!-- language -->
+            </span>
+        </div>
+
+        <div id="thresholdsBlock">
+            <div id="thresholdEasy" class="threshold">
+                <span class="thresholdName">Easy<!-- language --></span>
+                <span class="thresholdValue"><span class="dataBold" id="thresholdEasyValue">XXXX</span> xp</span>
+            </div>
+            <div id="thresholdMedium" class="threshold">
+                <span class="thresholdName">Medium<!-- language --></span>
+                <span class="thresholdValue"><span class="dataBold" id="thresholdMediumValue">XXXX</span> xp</span>
+            </div>
+            <div id="thresholdHard" class="threshold">
+                <span class="thresholdName">Hard<!-- language --></span>
+                <span class="thresholdValue"><span class="dataBold" id="thresholdHardValue">XXXX</span> xp</span>
+            </div>
+            <div id="thresholdDeadly" class="threshold">
+                <span class="thresholdName">Deadly<!-- language --></span>
+                <span class="thresholdValue"><span class="dataBold" id="thresholdDeadlyValue">XXXX</span> xp</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

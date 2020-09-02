@@ -1,0 +1,148 @@
+@import "fonts.css";
+@import "commons.css";
+
+html, body {
+    width:  1000px;
+    height: 800px;
+}
+
+#encounterCreator {
+    position:   relative;
+    width:      1000px;
+    height:     800px;
+
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+
+#partyDataBox {
+    position: absolute;
+    width:    940px;
+    height:   100px;
+    left:     30px;
+    top:      15px;
+}
+
+#partySummary {
+    position: absolute;
+    width:    213px;
+    height:   84px;
+    left:     17px;
+    top:      8px;
+}
+
+#partySummary .blockHeader {
+    position:    absolute;
+    width:       127px;
+    height:      31px;
+    left:        17px;
+    top:         8px;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: normal;
+    font-size:   18px;
+    line-height: 24px;
+    display:     flex;
+
+    color:       #000000;
+}
+
+#partySummary .block {
+    position:    absolute;
+    width:       213px;
+    height:      53px;
+    left:        17px;
+    top:         39px;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: normal;
+    font-size:   12px;
+    line-height: 16px;
+    text-align:  left;
+
+    color:       #000000;
+}
+
+#thresholdsBlock {
+    position: absolute;
+    width:    480px;
+    height:   32px;
+    left:     230px;
+    top:      34px;
+}
+
+#thresholdEasy {
+    position: absolute;
+    width:    120px;
+    height:   32px;
+    left:     230px;
+    top:      34px;
+}
+
+#thresholdMedium {
+    position: absolute;
+    width:    120px;
+    height:   32px;
+    left:     350px;
+    top:      34px;
+}
+
+#thresholdHard {
+    position: absolute;
+    width:    120px;
+    height:   32px;
+    left:     470px;
+    top:      34px;
+}
+
+#thresholdDeadly {
+    position: absolute;
+    width:    120px;
+    height:   32px;
+    left:     590px;
+    top:      34px;
+}
+
+.thresholdName {
+    width:       120px;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: normal;
+    font-size:   14px;
+    line-height: 18px;
+    text-align:  center;
+}
+
+#thresholdEasy .thresholdName {
+    color: #006BA7;
+}
+
+#thresholdMedium .thresholdName {
+    color: #00A71B;
+}
+
+#thresholdHard .thresholdName {
+    color: #E48900;
+}
+
+#thresholdDeadly .thresholdName {
+    color: #DA0000;
+}
+
+.thresholdValue {
+    width: 120px;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: normal;
+    font-size:   14px;
+    line-height: 18px;
+    text-align:  center;
+}
+
+.dataBold {
+    font-weight: bold;
+}
