@@ -1,8 +1,10 @@
 package models
 
+import "github.com/kovansky/dndEncounterCalculator/constants"
+
 type MonsterModel struct {
 	MonsterName    string
-	MonsterCR      int
+	MonsterCR      float32
 	MonsterXP      int
 	MonstersAmount int
 	GroupXP        int
@@ -21,8 +23,11 @@ func (monster *MonsterModel) Update() MonsterModel {
 }
 
 func (monster *MonsterModel) CalculateMonsterXP() int {
-	// ToDo: calculate monster XP value, based on CR-XP relation (CRXP constant)
-	return 0
+	if monster.MonsterCR != 0 && constants.CRXP[monster.MonsterCR] != 0 {
+		return constants.CRXP[monster.MonsterCR]
+	} else {
+		return -1
+	}
 }
 
 func (monster *MonsterModel) CalculateGroupXP() int {
