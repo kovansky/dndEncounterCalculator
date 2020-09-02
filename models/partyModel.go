@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/kovansky/dndEncounterCalculator/constants"
+	"github.com/kovansky/dndEncounterCalculator/models/enum"
 )
 
 type PartyModel struct {
@@ -11,6 +12,7 @@ type PartyModel struct {
 	PartyMinMax       int
 	PartyPerLevel     map[int]int
 	PartySize         int
+	PartyCategory     enum.PartyCategory
 }
 
 func NewPartyModel() *PartyModel {
@@ -104,4 +106,8 @@ func (party *PartyModel) CalculatePerLevel() map[int]int {
 
 func (party *PartyModel) CountPlayers() int {
 	return len(party.PartyPlayers)
+}
+
+func (party *PartyModel) GetPartyCategory() enum.PartyCategory {
+	return enum.PartyCategoryBySize(party.PartySize)
 }
