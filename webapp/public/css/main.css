@@ -69,7 +69,7 @@ html, body {
     position: absolute;
     width:    480px;
     height:   32px;
-    left:     230px;
+    left:     250px;
     top:      34px;
 }
 
@@ -77,36 +77,33 @@ html, body {
     position: absolute;
     width:    120px;
     height:   32px;
-    left:     230px;
-    top:      34px;
+    left:     0;
 }
 
 #thresholdMedium {
     position: absolute;
     width:    120px;
     height:   32px;
-    left:     350px;
-    top:      34px;
+    left:     120px;
 }
 
 #thresholdHard {
     position: absolute;
     width:    120px;
     height:   32px;
-    left:     470px;
-    top:      34px;
+    left:     240px;
 }
 
 #thresholdDeadly {
     position: absolute;
     width:    120px;
     height:   32px;
-    left:     590px;
-    top:      34px;
+    left:     360px;
 }
 
 .thresholdName {
     width:       120px;
+    display:     block;
 
     font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
     font-style:  normal;
@@ -133,7 +130,8 @@ html, body {
 }
 
 .thresholdValue {
-    width: 120px;
+    display:     block;
+    width:       120px;
 
     font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
     font-style:  normal;
