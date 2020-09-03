@@ -73,6 +73,11 @@
     color:         #5F5F5F;
 }
 
+.input.small {
+    font-size:   12px;
+    line-height: 16px;
+}
+
 ::placeholder, :-ms-input-placeholder, ::-ms-input-placeholder {
     font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
     font-style:  normal;
@@ -82,6 +87,11 @@
 
     color:       #5F5F5F;
     opacity:     1;
+}
+
+.input.small ::placeholder, .input.small :-ms-input-placeholder, .input.small ::-ms-input-placeholder {
+    font-size:   12px;
+    line-height: 16px;
 }
 
 #templates {

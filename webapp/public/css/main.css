@@ -192,6 +192,48 @@ html, body {
     height: 25px;
 }
 
+.monsterInputContainer {
+    position:      relative;
+    width:         340px;
+    height:        20px;
+    left:          10px;
+    top:           44px;
+    margin-bottom: 20px;
+
+    font-family:   "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:    normal;
+    font-weight:   300;
+    font-size:     12px;
+    line-height:   16px;
+}
+
+.monsterAmount {
+    width:        17px;
+    height:       20px;
+    margin-left:  2px;
+    margin-right: 2px;
+
+    text-align:   center;
+}
+
+.monsterName {
+    width:        159px;
+    height:       20px;
+    margin-left:  2px;
+    margin-right: 2px;
+}
+
+.monsterCR {
+    width:        17px;
+    height:       20px;
+    margin-left:  2px;
+    margin-right: 2px;
+
+    text-align:   center;
+}
+
+/* Fixme: added fields are falling under the button and dale */
+
 /* Common */
 
 .dataBold {

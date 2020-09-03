@@ -77,6 +77,8 @@ html, body {
     text-align: center;
 }
 
+/* Fixme: added fields are falling under the button and dale */
+
 .charInputContainer .btn.icnBtn {
     right: 0;
     top:   1px;
