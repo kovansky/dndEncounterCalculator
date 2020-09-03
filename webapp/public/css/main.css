@@ -1,6 +1,8 @@
 @import "fonts.css";
 @import "commons.css";
 
+/* Window */
+
 html, body {
     width:  1000px;
     height: 800px;
@@ -14,6 +16,8 @@ html, body {
     background: #FFFFFF;
     box-sizing: border-box;
 }
+
+/* Header (party summary) */
 
 #partyDataBox {
     position: absolute;
@@ -140,6 +144,55 @@ html, body {
     line-height: 18px;
     text-align:  center;
 }
+
+/* Content (monsters form and results) */
+#content {
+    position: absolute;
+    width:    940px;
+    height:   515px;
+    left:     30px;
+    top:      130px;
+}
+
+#monstersForm {
+    position: absolute;
+    width:    400px;
+    height:   515px;
+    left:     0;
+    top:      0;
+}
+
+#monstersForm .blockHeader {
+    position:    absolute;
+    width:       280px;
+    height:      31px;
+    left:        10px;
+    top:         10px;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: normal;
+    font-size:   16px;
+    line-height: 21px;
+    display:     flex;
+
+    color:       #000000;
+}
+
+#monstersForm .blockFooter {
+    position: absolute;
+    width:    160px;
+    height:   25px;
+    left:     120px;
+    top:      480px;
+}
+
+#monstersForm .addMonster.btn {
+    width:  160px;
+    height: 25px;
+}
+
+/* Common */
 
 .dataBold {
     font-weight: bold;
