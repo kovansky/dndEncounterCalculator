@@ -35,7 +35,5 @@ $(document).ready(function() {
                 nextWindow()
             }
         })
-
-        // ToDo: invoke go function
     })
 })

@@ -58,5 +58,5 @@ func PartyWindow(wv webview.WebView) {
 		return true
 	})
 
-	wv.Navigate("http://127.0.0.1:12343/party")
+	wv.Navigate("http://127.0.0.1:12348/party")
 }
