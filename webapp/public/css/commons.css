@@ -94,6 +94,21 @@
     line-height: 16px;
 }
 
+.input.checkInput {
+    -moz-appearance:    none;
+    -webkit-appearance: none;
+    appearance:         none;
+    width:              20px;
+    height:             20px;
+    margin-bottom:      -3px;
+    cursor:             pointer;
+}
+
+.input.checkInput:checked {
+    background:      #E3E3E3 url("../icons/checkIcon.svg") no-repeat center;
+    background-size: 10px 10px;
+}
+
 #templates {
     display: none;
 }

@@ -156,7 +156,7 @@ html, body {
 
 #monstersForm {
     position: absolute;
-    width:    400px;
+    width:    383px;
     height:   515px;
     left:     0;
     top:      0;
@@ -205,6 +205,8 @@ html, body {
     font-weight:   300;
     font-size:     12px;
     line-height:   16px;
+
+    text-align: right;
 }
 
 .monsterAmount {

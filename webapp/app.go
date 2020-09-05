@@ -12,7 +12,7 @@ func App() {
 	mux.HandleFunc("/main", main)
 
 	server := &http.Server{
-		Addr:    "127.0.0.1:12346",
+		Addr:    "127.0.0.1:12343",
 		Handler: mux,
 	}
 
