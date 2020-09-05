@@ -6,6 +6,7 @@
     <script src="/public/libs/jQuery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="/public/css/main.css">
     <script src="/public/js/common.js"></script>
+    <script src="/public/js/main.js"></script>
 </head>
 <body>
 <div id="encounterCreator">
@@ -17,9 +18,8 @@
             </span>
 
             <span class="block">
-                <span class="dataBold" id="partyDataSize">X</span> players (<span class="dataBold"
-                                                                                  id="partyDataType">X</span> party)<br>
-                <span class="dataBold" id="partyDataAvgLvl">X</span> average level
+                <span class="dataBold dataSync" data-cat="party" data-field="party_size">X</span> players (<span class="dataBold dataSync" data-cat="party" data-field="party_category">X</span> party)<br>
+                <span class="dataBold dataSync" data-cat="party" data-field="party_average_level">X</span> average level
                 <!-- language -->
             </span>
         </div>
@@ -27,19 +27,19 @@
         <div id="thresholdsBlock">
             <div id="thresholdEasy" class="threshold">
                 <span class="thresholdName">Easy<!-- language --></span>
-                <span class="thresholdValue"><span class="dataBold" id="thresholdEasyValue">XXXX</span> xp</span>
+                <span class="thresholdValue"><span class="dataBold dataSync" data-cat="party" data-field="party_thresholds.easy">XXXX</span> xp</span>
             </div>
             <div id="thresholdMedium" class="threshold">
                 <span class="thresholdName">Medium<!-- language --></span>
-                <span class="thresholdValue"><span class="dataBold" id="thresholdMediumValue">XXXX</span> xp</span>
+                <span class="thresholdValue"><span class="dataBold dataSync" data-cat="party" data-field="party_thresholds.medium">XXXX</span> xp</span>
             </div>
             <div id="thresholdHard" class="threshold">
                 <span class="thresholdName">Hard<!-- language --></span>
-                <span class="thresholdValue"><span class="dataBold" id="thresholdHardValue">XXXX</span> xp</span>
+                <span class="thresholdValue"><span class="dataBold dataSync" data-cat="party" data-field="party_thresholds.hard">XXXX</span> xp</span>
             </div>
             <div id="thresholdDeadly" class="threshold">
                 <span class="thresholdName">Deadly<!-- language --></span>
-                <span class="thresholdValue"><span class="dataBold" id="thresholdDeadlyValue">XXXX</span> xp</span>
+                <span class="thresholdValue"><span class="dataBold dataSync" data-cat="party" data-field="party_thresholds.deadly">XXXX</span> xp</span>
             </div>
         </div>
     </div>
@@ -67,8 +67,6 @@
         </div>
     </div>
 </div>
-
-<script src="/public/js/main.js"></script>
 
 <div id="templates">
     <div id="monsterInputTmpl" class="tmpl">

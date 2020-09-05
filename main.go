@@ -12,8 +12,7 @@ func main() {
 	wv := webview.New(true)
 	defer wv.Destroy()
 
-	//controllers.PartyWindow(wv)
-	controllers.MainWindow(wv) // ToDo: ONLY FOR TESTING
+	controllers.PartyWindow(wv)
 
 	wv.Run()
 }
