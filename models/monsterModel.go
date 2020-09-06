@@ -3,12 +3,12 @@ package models
 import "github.com/kovansky/dndEncounterCalculator/constants"
 
 type MonsterModel struct {
-	MonsterName    string
-	MonsterCR      float32
-	MonsterXP      int
-	MonstersAmount int
-	GroupXP        int
-	CountInCRMod   bool
+	MonsterName    string  `json:"monster_name"`
+	MonsterCR      float32 `json:"monster_cr"`
+	MonsterXP      int     `json:"monster_xp"`
+	MonstersAmount int     `json:"monsters_amount"`
+	GroupXP        int     `json:"group_xp"`
+	CountInCRMod   bool    `json:"count_in_cr_mod"`
 }
 
 func NewMonsterModel() *MonsterModel {

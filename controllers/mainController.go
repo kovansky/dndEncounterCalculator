@@ -3,6 +3,8 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/kovansky/dndEncounterCalculator/misc"
+	"github.com/kovansky/dndEncounterCalculator/models"
+	"github.com/kovansky/dndEncounterCalculator/models/enum"
 	"github.com/webview/webview"
 )
 
@@ -17,6 +19,42 @@ func MainWindow(wv webview.WebView) {
 		return string(jsonParty)
 	})
 	misc.Check(err)
+
+	err = wv.Bind("calculateResults", func(monstersString json.RawMessage) string {
+		var (
+			enemies    = models.NewEnemiesModel()
+			monsters   []models.MonsterModel
+			modifier   enum.EncounterModifier
+			adjustedXP float32
+			difficulty enum.EncounterDifficulty
+			results    models.ResultsModel
+		)
+
+		json.Unmarshal(monstersString, &monsters)
+
+		for _, monster := range monsters {
+			monster.Update()
+			enemies.AddMonster(monster)
+		}
+
+		modifier = enum.CalculateEncounterModificator(Party.PartyCategory, enemies.GroupModCountType)
+		adjustedXP = float32(enemies.GroupXP) * float32(modifier)
+		difficulty = enum.CalculateEncounterDifficulty(Party.PartyThresholds, adjustedXP)
+
+		results = models.ResultsModel{
+			MonstersAmount:      enemies.GroupSize,
+			MonstersGroupType:   enum.GroupTypeName(enemies.GroupType),
+			Award:               enemies.GroupXP,
+			DifficultyModifier:  modifier,
+			AdjustedXP:          adjustedXP,
+			EncounterDifficulty: difficulty,
+		}
+
+		ret, err := json.Marshal(results)
+		misc.Check(err)
+
+		return string(ret)
+	})
 
 	wv.Navigate("http://127.0.0.1:12348/main")
 }

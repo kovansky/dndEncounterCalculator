@@ -1,72 +1,72 @@
 package enum
 
-type EncounterModificator float32
+type EncounterModifier float32
 
 const (
-	ModificatorBig    EncounterModificator = 0.5
-	ModificatorSingle EncounterModificator = 1
-	ModificatorPair   EncounterModificator = 1.5
-	ModificatorGroup  EncounterModificator = 2
-	ModificatorGang   EncounterModificator = 2.5
-	ModificatorMob    EncounterModificator = 3
-	ModificatorHorde  EncounterModificator = 4
-	ModificatorSmall  EncounterModificator = 5
+	ModifierBig    EncounterModifier = 0.5
+	ModifierSingle EncounterModifier = 1
+	ModifierPair   EncounterModifier = 1.5
+	ModifierGroup  EncounterModifier = 2
+	ModifierGang   EncounterModifier = 2.5
+	ModifierMob    EncounterModifier = 3
+	ModifierHorde  EncounterModifier = 4
+	ModifierSmall  EncounterModifier = 5
 )
 
-func CalculateEncounterModificator(partySize PartyCategory, groupType GroupType) EncounterModificator {
+func CalculateEncounterModificator(partySize PartyCategory, groupType GroupType) EncounterModifier {
 	switch partySize {
 	case PartySmall:
 		switch groupType {
 		case MonsterSingle:
-			return ModificatorPair
+			return ModifierPair
 		case MonsterPair:
-			return ModificatorGroup
+			return ModifierGroup
 		case MonsterGroup:
-			return ModificatorGang
+			return ModifierGang
 		case MonsterGang:
-			return ModificatorMob
+			return ModifierMob
 		case MonsterMob:
-			return ModificatorHorde
+			return ModifierHorde
 		case MonsterHorde:
-			return ModificatorSmall
+			return ModifierSmall
 		default:
-			return ModificatorPair
+			return ModifierPair
 		}
 	case PartyStandard:
 		switch groupType {
 		case MonsterSingle:
-			return ModificatorSingle
+			return ModifierSingle
 		case MonsterPair:
-			return ModificatorPair
+			return ModifierPair
 		case MonsterGroup:
-			return ModificatorGroup
+			return ModifierGroup
 		case MonsterGang:
-			return ModificatorGang
+			return ModifierGang
 		case MonsterMob:
-			return ModificatorMob
+			return ModifierMob
 		case MonsterHorde:
-			return ModificatorHorde
+			return ModifierHorde
 		default:
-			return ModificatorSingle
+			return ModifierSingle
 		}
 	case PartyBig:
 		switch groupType {
 		case MonsterSingle:
-			return ModificatorBig
+			return ModifierBig
 		case MonsterPair:
-			return ModificatorSingle
+			return ModifierSingle
 		case MonsterGroup:
-			return ModificatorPair
+			return ModifierPair
 		case MonsterGang:
-			return ModificatorGroup
+			return ModifierGroup
 		case MonsterMob:
-			return ModificatorGang
+			return ModifierGang
 		case MonsterHorde:
-			return ModificatorMob
+			return ModifierMob
 		default:
-			return ModificatorBig
+			return ModifierBig
 		}
 	default:
-		return ModificatorSingle
+		return ModifierSingle
 	}
 }
