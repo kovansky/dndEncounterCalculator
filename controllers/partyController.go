@@ -10,7 +10,7 @@ import (
 var Party *models.PartyModel
 
 func PartyWindow(wv webview.WebView) {
-	wv.SetTitle("Create your party")
+	wv.SetTitle("Create your party") // language
 	wv.SetSize(600, 550, webview.HintFixed)
 
 	err := wv.Bind("readParty", func(modelString json.RawMessage) int {
@@ -51,12 +51,11 @@ func PartyWindow(wv webview.WebView) {
 	misc.Check(err)
 
 	err = wv.Bind("nextWindow", func() bool {
-		// ToDo: open next window
-
-		wv.Destroy()
+		MainWindow(wv)
 
 		return true
 	})
+	misc.Check(err)
 
-	wv.Navigate("http://127.0.0.1:12345/party")
+	wv.Navigate("http://127.0.0.1:12349/party")
 }

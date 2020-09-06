@@ -2,15 +2,17 @@ package models
 
 import (
 	"github.com/kovansky/dndEncounterCalculator/constants"
+	"github.com/kovansky/dndEncounterCalculator/models/enum"
 )
 
 type PartyModel struct {
-	PartyPlayers      map[string]PlayerModel
-	PartyAverageLevel float64
-	PartyThresholds   map[string]int
-	PartyMinMax       int
-	PartyPerLevel     map[int]int
-	PartySize         int
+	PartyPlayers      map[string]PlayerModel `json:"party_players"`
+	PartyAverageLevel float64                `json:"party_average_level"`
+	PartyThresholds   map[string]int         `json:"party_thresholds"`
+	PartyMinMax       int                    `json:"party_min_max"`
+	PartyPerLevel     map[int]int            `json:"party_per_level"`
+	PartySize         int                    `json:"party_size"`
+	PartyCategory     enum.PartyCategory     `json:"party_category"`
 }
 
 func NewPartyModel() *PartyModel {
@@ -23,6 +25,7 @@ func (party *PartyModel) Update() PartyModel {
 	party.PartyMinMax = party.CalculateMinMax()
 	party.PartyPerLevel = party.CalculatePerLevel()
 	party.PartySize = party.CountPlayers()
+	party.PartyCategory = party.GetPartyCategory()
 
 	return *party
 }
@@ -104,4 +107,8 @@ func (party *PartyModel) CalculatePerLevel() map[int]int {
 
 func (party *PartyModel) CountPlayers() int {
 	return len(party.PartyPlayers)
+}
+
+func (party *PartyModel) GetPartyCategory() enum.PartyCategory {
+	return enum.PartyCategoryBySize(party.PartySize)
 }

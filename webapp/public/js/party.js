@@ -23,19 +23,17 @@ $(document).ready(function() {
             }
 
             char.player_name = $(this).children()[0].value
-            char.player_level = $(this).children()[1].value
+            char.player_level = parseInt($(this).children()[1].value)
 
             characters.push(char)
         })
 
-        // Declared in Go
+        // Declared in go
         readParty(characters).then((ret) => {
             if((ret !== 0) || (ret === 0 && characters.length !== 0)) {
                 // Declared in go
                 nextWindow()
             }
         })
-
-        // ToDo: invoke go function
     })
 })
