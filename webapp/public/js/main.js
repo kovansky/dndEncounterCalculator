@@ -61,6 +61,33 @@ function monstersUpdated() {
 
     // Declared in go
     calculateResults(monsters).then((ret) => {
-        let json = JSON.parse(ret)
+        let jsonData = JSON.parse(ret)
+
+        $('#results').removeClass('empty')
+
+        $(".dataSync[data-cat=\"results\"]").each(function() {
+            let field = $(this).data("field")
+
+            if(field.includes(".")) {
+                let arr = field.split("."),
+                    actualField = jsonData
+
+                for(let i = 0; i < arr.length; i++) {
+                    actualField = actualField[arr[i]]
+                }
+
+                $(this).html(actualField)
+            } else {
+                $(this).html(jsonData[field])
+            }
+        })
+
+        $('.encounterDifficultyResult')
+            .removeClass('trivial')
+            .removeClass('easy')
+            .removeClass('medium')
+            .removeClass('hard')
+            .removeClass('deadly')
+            .addClass(jsonData.encounter_difficulty)
     })
 }

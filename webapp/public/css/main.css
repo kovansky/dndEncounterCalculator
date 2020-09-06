@@ -5,13 +5,13 @@
 
 html, body {
     width:  1000px;
-    height: 800px;
+    height: 675px;
 }
 
 #encounterCreator {
     position:   relative;
     width:      1000px;
-    height:     800px;
+    height:     675px;
 
     background: #FFFFFF;
     box-sizing: border-box;
@@ -241,6 +241,62 @@ html, body {
 }
 
 /* Fixme: added fields are falling under the button and dale */
+
+/* Results */
+#results {
+    position: absolute;
+    width:    537px;
+    height:   515px;
+    left:     403px;
+    top:      0;
+}
+
+#results.empty {
+    display: none;
+}
+
+#results p {
+    margin-left:   10px;
+    margin-bottom: 15px;
+
+    font-family:   "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:    normal;
+    font-weight:   normal;
+    font-size:     14px;
+    line-height:   16px;
+}
+
+#results p:first-of-type {
+    margin-top: 40px;
+}
+
+.encounterDifficultyResult {
+    margin-left: 250px;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-size:   20px;
+    line-height: 23px;
+}
+
+.encounterDifficultyResult.trivial {
+    color: #06E7FF;
+}
+
+.encounterDifficultyResult.easy {
+    color: #006BA7;
+}
+
+.encounterDifficultyResult.medium {
+    color: #00A71B;
+}
+
+.encounterDifficultyResult.hard {
+    color: #E48900;
+}
+
+.encounterDifficultyResult.deadly {
+    color: #DA0000;
+}
 
 /* Common */
 
