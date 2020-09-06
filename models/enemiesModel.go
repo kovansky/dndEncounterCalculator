@@ -3,10 +3,11 @@ package models
 import "github.com/kovansky/dndEncounterCalculator/models/enum"
 
 type EnemiesModel struct {
-	GroupMonsters map[string]MonsterModel
-	GroupSize     int
-	GroupType     enum.GroupType
-	GroupXP       int
+	GroupMonsters     map[string]MonsterModel
+	GroupSize         int
+	GroupType         enum.GroupType
+	GroupXP           int
+	GroupModCountType enum.GroupType
 }
 
 func NewEnemiesModel() *EnemiesModel {
@@ -14,6 +15,10 @@ func NewEnemiesModel() *EnemiesModel {
 }
 
 func (enemies *EnemiesModel) Update() EnemiesModel {
+	enemies.GroupSize = enemies.CountSize()
+	enemies.GroupType = enemies.GetGroupType()
+	enemies.GroupXP = enemies.CalculateGroupXP()
+	enemies.GroupModCountType = enemies.CalculateModCountType()
 
 	return *enemies
 }
@@ -56,4 +61,16 @@ func (enemies *EnemiesModel) CalculateGroupXP() int {
 	}
 
 	return xpValue
+}
+
+func (enemies *EnemiesModel) CalculateModCountType() enum.GroupType {
+	count := 0
+
+	for _, monster := range enemies.GroupMonsters {
+		if monster.CountInCRMod {
+			count += monster.MonstersAmount
+		}
+	}
+
+	return enum.GroupTypeByAmount(count)
 }
