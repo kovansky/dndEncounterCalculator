@@ -1,0 +1,105 @@
+@import "fonts.css";
+@import "commons.css";
+
+html, body {
+    width:  600px;
+    height: 550px;
+}
+
+#partyCreator {
+    position:   relative;
+    width:      600px;
+    height:     550px;
+
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+
+#header {
+    position: absolute;
+    width:    540px;
+    height:   95px;
+    left:     30px;
+    top:      10px;
+}
+
+.winTitle {
+    position:    absolute;
+    width:       263px;
+    height:      42px;
+    left:        139px;
+    top:         0;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: normal;
+    font-size:   32px;
+    line-height: 42px;
+    text-align:  center;
+
+    color:       #000000;
+}
+
+.charNew {
+    position: absolute;
+    width:    250px;
+    height:   35px;
+    left:     146px;
+    top:      49px;
+}
+
+.charNew .btnText {
+    width: 179px;
+}
+
+#content {
+    position: absolute;
+    width:    540px;
+    height:   365px;
+    left:     30px;
+    top:      110px;
+}
+
+.charInputContainer {
+    position: relative;
+    width:    425px;
+    height:   50px;
+    margin:   0 auto;
+}
+
+.charName {
+    width:        254px;
+    margin-right: 22px;
+}
+
+.charLevel {
+    width:      60px;
+    text-align: center;
+}
+
+/* Fixme: added fields are falling under the button and dale */
+
+.charInputContainer .btn.icnBtn {
+    right: 0;
+    top:   1px;
+}
+
+#footer {
+    position: absolute;
+    width:    540px;
+    height:   50px;
+    top:      500px;
+    left:     30px;
+}
+
+.nextStep {
+    position: absolute;
+    width:    150px;
+    height:   35px;
+    left:     195px;
+    top:      7px;
+}
+
+.nextStep .btnText {
+    width: 90px;
+}

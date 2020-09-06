@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D&D Encounter Calculator</title> <!-- language -->
+    <script src="/public/libs/jQuery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="/public/css/main.css">
+    <script src="/public/js/common.js"></script>
+    <script src="/public/js/main.js"></script>
+</head>
+<body>
+<div id="encounterCreator">
+    <div id="partyDataBox">
+        <div id="partySummary">
+            <span class="blockHeader">
+                Your Party:
+                <!-- language -->
+            </span>
+
+            <span class="block">
+                <span class="dataBold dataSync" data-cat="party" data-field="party_size">X</span> players (<span class="dataBold dataSync" data-cat="party" data-field="party_category">X</span> party)<br>
+                <span class="dataBold dataSync" data-cat="party" data-field="party_average_level">X</span> average level
+                <!-- language -->
+            </span>
+        </div>
+
+        <div id="thresholdsBlock">
+            <div id="thresholdEasy" class="threshold">
+                <span class="thresholdName">Easy<!-- language --></span>
+                <span class="thresholdValue"><span class="dataBold dataSync" data-cat="party" data-field="party_thresholds.easy">XXXX</span> xp</span>
+            </div>
+            <div id="thresholdMedium" class="threshold">
+                <span class="thresholdName">Medium<!-- language --></span>
+                <span class="thresholdValue"><span class="dataBold dataSync" data-cat="party" data-field="party_thresholds.medium">XXXX</span> xp</span>
+            </div>
+            <div id="thresholdHard" class="threshold">
+                <span class="thresholdName">Hard<!-- language --></span>
+                <span class="thresholdValue"><span class="dataBold dataSync" data-cat="party" data-field="party_thresholds.hard">XXXX</span> xp</span>
+            </div>
+            <div id="thresholdDeadly" class="threshold">
+                <span class="thresholdName">Deadly<!-- language --></span>
+                <span class="thresholdValue"><span class="dataBold dataSync" data-cat="party" data-field="party_thresholds.deadly">XXXX</span> xp</span>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div id="monstersForm">
+            <div class="blockHeader">
+                Now, let's add some monsters here...
+                <!-- language -->
+            </div>
+
+            <div class="fields">
+                <!-- place for fields -->
+            </div>
+
+            <div class="blockFooter">
+                <div class="btn small addMonster">
+                    <img src="/public/icons/plusIcon.svg" alt="" class="btnIcon">
+                    <div class="btnText">Add another one</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="results" class="empty">
+            <p>So, we have a <span class="dataBold dataSync" data-cat="results" data-field="monsters_group_type">xxxx</span> group of enemies (consisting of <span class="dataBold dataSync" data-cat="results" data-field="monsters_amount">xxxx</span> monsters).</p>
+            <p>The difficulty modifier for the party is <span class="dataBold dataSync" data-cat="results" data-field="difficulty_modifier">xxxx</span>.</p>
+            <p>Monsters XP value is <span class="dataBold dataSync" data-cat="results" data-field="award">xxxx</span> (so everyone would get <span class="dataBold dataSync" data-cat="results" data-field="capo_award">xxxx</span> XP),<br>
+            but XP value adjusted to difficulty equals <span class="dataBold dataSync" data-cat="results" data-field="adjusted_xp">xxxx</span>.</p>
+            <p>Finally, the encounter difficulty is</p>
+            <span class="dataBold dataSync encounterDifficultyResult" data-cat="results" data-field="encounter_difficulty">XXXX</span>
+        </div>
+    </div>
+</div>
+
+<div id="templates">
+    <div id="monsterInputTmpl" class="tmpl">
+        <div class="monsterInputContainer">
+            <input type="number" name="monsterAmount" class="input small numInput monsterAmount" placeholder="1"
+                   value="1">
+            x of
+            <input type="text" name="monsterName" class="input small textInput monsterName" placeholder="Monster name">
+            with CR
+            <input type="number" name="monsterCR" class="input small numInput monsterCR" placeholder="1" value="1">
+            <br>
+            <label for="monsterDifficultField">and count them as difficult?</label>
+            <input type="checkbox" name="monsterDifficult" id="monsterDifficultField" class="input small checkInput monsterDifficult"
+                   checked>
+            <span class="btn icnBtn monsterDelete">
+                <img src="/public/icons/closeIcon.svg" alt="" class="btnIcon">
+            </span>
+            <!-- language -->
+        </div>
+    </div>
+</div>
+</body>
+</html>

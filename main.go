@@ -1,21 +1,18 @@
 package main
 
 import (
-	"fyne.io/fyne/app"
-	"fyne.io/fyne/widget"
+	"github.com/kovansky/dndEncounterCalculator/controllers"
+	"github.com/kovansky/dndEncounterCalculator/webapp"
+	"github.com/webview/webview"
 )
 
 func main() {
-	a := app.New()
-	w := a.NewWindow("Hello, Fyne!")
+	go webapp.App()
 
-	hello := widget.NewLabel("Hello, Fyne! :D")
-	w.SetContent(widget.NewVBox(
-		hello,
-		widget.NewButton("Hi!", func() {
-			hello.SetText("Welcome :)")
-		}),
-	))
+	wv := webview.New(true)
+	defer wv.Destroy()
 
-	w.ShowAndRun()
+	controllers.PartyWindow(wv)
+
+	wv.Run()
 }
