@@ -37,6 +37,11 @@ $(document).ready(function() {
     })
 
     $(".fields").on("change", "input", monstersUpdated)
+
+    $('.editParty').click(() => {
+        // Declared in go
+        editParty()
+    })
 })
 
 function monstersUpdated() {

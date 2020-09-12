@@ -1,6 +1,24 @@
 $(document).ready(function() {
     cloneTemplate("#charInputTmpl", "#content")
 
+    // Declared in go
+    loadWindowState().then((ret) => {
+        if(ret !== "") {
+            let jsonData = JSON.parse(ret)
+
+            jsonData.forEach((el, index) => {
+                let domElement = $("#content").find(".charInputContainer").last()
+
+                domElement.find(".charName").val(el.player_name)
+                domElement.find(".charLevel").val(el.player_level)
+
+                if(index !== jsonData.length - 1) {
+                    cloneTemplate("#charInputTmpl", "#content")
+                }
+            })
+        }
+    })
+
     $(".charNew").click(() => {
         cloneTemplate("#charInputTmpl", "#content")
     })
