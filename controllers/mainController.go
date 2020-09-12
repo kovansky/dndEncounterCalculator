@@ -8,6 +8,8 @@ import (
 	"github.com/webview/webview"
 )
 
+var enemies *models.EnemiesModel
+
 func MainWindow(wv webview.WebView) {
 	wv.SetTitle("D&D Encounter Calculator") // language
 	wv.SetSize(1000, 675, webview.HintFixed)
@@ -21,8 +23,11 @@ func MainWindow(wv webview.WebView) {
 	misc.Check(err)
 
 	err = wv.Bind("calculateResults", func(monstersString json.RawMessage) string {
+		if enemies == nil {
+			enemies = models.NewEnemiesModel()
+		}
+
 		var (
-			enemies    = models.NewEnemiesModel()
 			monsters   []models.MonsterModel
 			modifier   enum.EncounterModifier
 			adjustedXP float32
@@ -58,11 +63,30 @@ func MainWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
+	err = wv.Bind("loadWindowState", func() string {
+		if enemies != nil {
+			var monstersAsArray []models.MonsterModel
+
+			for _, monster := range enemies.GroupMonsters {
+				monstersAsArray = append(monstersAsArray, monster)
+			}
+
+			jsonE, err := json.Marshal(monstersAsArray)
+			misc.Check(err)
+
+			stringed := string(jsonE)
+
+			return stringed
+		} else {
+			return ""
+		}
+	})
+
 	err = wv.Bind("editParty", func() bool {
 		PartyWindow(wv)
 
 		return true
 	})
 
-	wv.Navigate("http://127.0.0.1:12335/main")
+	wv.Navigate("http://127.0.0.1:12330/main")
 }

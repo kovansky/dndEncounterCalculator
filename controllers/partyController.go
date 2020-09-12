@@ -77,5 +77,5 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
-	wv.Navigate("http://127.0.0.1:12335/party")
+	wv.Navigate("http://127.0.0.1:12330/party")
 }

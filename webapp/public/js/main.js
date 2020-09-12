@@ -23,6 +23,28 @@ $(document).ready(function() {
         })
     })
 
+    // Declared in go
+    loadWindowState().then((ret) => {
+        if(ret !== "") {
+            let jsonData = JSON.parse(ret)
+
+            jsonData.forEach((el, index) => {
+                let domElement = $('.fields').find('.monsterInputContainer').last()
+
+                domElement.find('.monsterAmount').val(el.monsters_amount)
+                domElement.find('.monsterName').val(el.monster_name)
+                domElement.find('.monsterCR').val(el.monster_cr)
+                domElement.find('.monsterDifficult').prop("checked", el.count_in_cr_mod)
+
+                if(index !== jsonData.length - 1) {
+                    cloneTemplate("#monsterInputTmpl", "#monstersForm .fields")
+                }
+            })
+
+            monstersUpdated()
+        }
+    })
+
     $(".addMonster").click(() => {
         cloneTemplate("#monsterInputTmpl", "#monstersForm .fields")
     })
