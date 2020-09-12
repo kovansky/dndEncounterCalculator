@@ -145,6 +145,14 @@ html, body {
     text-align:  center;
 }
 
+.editParty {
+    position: absolute;
+    width:    115px;
+    height:   25px;
+    left:     770px;
+    top:      38px;
+}
+
 /* Content (monsters form and results) */
 #content {
     position: absolute;
@@ -187,7 +195,7 @@ html, body {
     top:      480px;
 }
 
-#monstersForm .addMonster.btn {
+#monstersForm .addMonster {
     width:  160px;
     height: 25px;
 }

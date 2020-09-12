@@ -57,5 +57,25 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
-	wv.Navigate("http://127.0.0.1:12349/party")
+	err = wv.Bind("loadWindowState", func() string {
+		if Party != nil {
+			var playersAsArray []models.PlayerModel
+
+			for _, player := range Party.PartyPlayers {
+				playersAsArray = append(playersAsArray, player)
+			}
+
+			jsonP, err := json.Marshal(playersAsArray)
+			misc.Check(err)
+
+			stringed := string(jsonP)
+
+			return stringed
+		} else {
+			return ""
+		}
+	})
+	misc.Check(err)
+
+	wv.Navigate("http://127.0.0.1:12330/party")
 }
