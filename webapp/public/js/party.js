@@ -20,7 +20,14 @@ $(document).ready(function() {
     })
 
     $(".charNew").click(() => {
-        cloneTemplate("#charInputTmpl", "#content")
+        // cloneTemplate("#charInputTmpl", "#content")
+
+        lockWindow()
+        runError().then((ret) => {
+            if(ret === 1) {
+                unlockWindow()
+            }
+        })
     })
 
     $("#content").on("click", ".charDelete", function() {

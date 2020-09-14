@@ -77,5 +77,12 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
-	wv.Navigate("http://127.0.0.1:12330/party")
+	err = wv.Bind("runError", func() int {
+		ch := make(chan int)
+		go ErrorWindow(ch)
+
+		return <-ch
+	})
+
+	wv.Navigate("http://127.0.0.1:12342/party")
 }
