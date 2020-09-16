@@ -1,8 +1,7 @@
-package controllers
+package misc
 
 import (
 	"fmt"
-	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
 	"github.com/webview/webview"
 )
@@ -19,7 +18,7 @@ func ErrorWindow(ch chan int, model models.ErrorModel) {
 		ew.Terminate()
 		return status
 	})
-	misc.Check(err)
+	Check(err)
 
 	ew.Navigate("data:text/html," + fmt.Sprintf(`<!doctype html>
 <html>

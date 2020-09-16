@@ -83,16 +83,7 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
-	err = wv.Bind("runError", func(modelString json.RawMessage) int {
-		var model models.ErrorModel
-
-		json.Unmarshal(modelString, &model)
-
-		ch := make(chan int)
-		go ErrorWindow(ch, model)
-
-		return <-ch
-	})
+	err = wv.Bind("runError", misc.ThrowError)
 
 	wv.Navigate("http://127.0.0.1:12344/party")
 }
