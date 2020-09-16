@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
+	"github.com/kovansky/dndEncounterCalculator/models/enum"
 	"github.com/webview/webview"
 )
 
@@ -79,7 +80,11 @@ func PartyWindow(wv webview.WebView) {
 
 	err = wv.Bind("runError", func() int {
 		ch := make(chan int)
-		go ErrorWindow(ch)
+		go ErrorWindow(ch, models.ErrorModel{
+			ErrorNumber:      1,
+			ErrorDescription: "Oh no, an error!",
+			ErrorType:        enum.ErrorEasy,
+		})
 
 		return <-ch
 	})
