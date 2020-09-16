@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
-	"github.com/kovansky/dndEncounterCalculator/models/enum"
 	"github.com/webview/webview"
 )
 
@@ -27,6 +26,12 @@ func PartyWindow(wv webview.WebView) {
 		)
 
 		json.Unmarshal(modelString, &model)
+
+		if len(model) == 1 {
+			if model[0].PlayerName == "" && model[0].PlayerLevel == 0 {
+				return -1001
+			}
+		}
 
 		for _, player := range model {
 			Party.RemovePlayer(player.PlayerName)
@@ -78,16 +83,16 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
-	err = wv.Bind("runError", func() int {
+	err = wv.Bind("runError", func(modelString json.RawMessage) int {
+		var model models.ErrorModel
+
+		json.Unmarshal(modelString, &model)
+
 		ch := make(chan int)
-		go ErrorWindow(ch, models.ErrorModel{
-			ErrorNumber:      1,
-			ErrorDescription: "Oh no, an error!",
-			ErrorType:        enum.ErrorEasy,
-		})
+		go ErrorWindow(ch, model)
 
 		return <-ch
 	})
 
-	wv.Navigate("http://127.0.0.1:12342/party")
+	wv.Navigate("http://127.0.0.1:12344/party")
 }

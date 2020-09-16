@@ -20,14 +20,7 @@ $(document).ready(function() {
     })
 
     $(".charNew").click(() => {
-        // cloneTemplate("#charInputTmpl", "#content")
-
-        lockWindow()
-        runError().then((ret) => {
-            if(ret === 1) {
-                unlockWindow()
-            }
-        })
+        cloneTemplate("#charInputTmpl", "#content")
     })
 
     $("#content").on("click", ".charDelete", function() {
@@ -55,9 +48,21 @@ $(document).ready(function() {
 
         // Declared in go
         readParty(characters).then((ret) => {
-            if((ret !== 0) || (ret === 0 && characters.length !== 0)) {
+            if(((ret !== 0) || (ret === 0 && characters.length !== 0)) && (ret !== -1001)) {
                 // Declared in go
                 nextWindow()
+            } else if(ret === -1001) {
+                lockWindow()
+                runError({
+                    error_number: 1,
+                    error_description: "Party cannot be null",
+                    error_type: 1
+                })
+                    .then((ret) => {
+                        if(ret === 1) {
+                            unlockWindow()
+                        }
+                    })
             }
         })
     })
