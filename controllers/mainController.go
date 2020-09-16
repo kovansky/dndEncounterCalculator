@@ -81,12 +81,14 @@ func MainWindow(wv webview.WebView) {
 			return ""
 		}
 	})
+	misc.Check(err)
 
 	err = wv.Bind("editParty", func() bool {
 		PartyWindow(wv)
 
 		return true
 	})
+	misc.Check(err)
 
-	wv.Navigate("http://127.0.0.1:12330/main")
+	wv.Navigate("http://127.0.0.1:12344/main")
 }

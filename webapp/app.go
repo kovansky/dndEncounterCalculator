@@ -12,7 +12,8 @@ func App() {
 	mux.HandleFunc("/main", main)
 
 	server := &http.Server{
-		Addr:    "127.0.0.1:12330",
+		// ToDo: configurable port, saved as const
+		Addr:    "127.0.0.1:12344",
 		Handler: mux,
 	}
 

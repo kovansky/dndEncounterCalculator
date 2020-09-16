@@ -27,7 +27,24 @@ func PartyWindow(wv webview.WebView) {
 
 		json.Unmarshal(modelString, &model)
 
+		if len(model) == 1 {
+			if model[0].PlayerName == "" && model[0].PlayerLevel == 0 {
+				return -2001
+			}
+		}
+
 		for _, player := range model {
+			if player.PlayerLevel == 0 {
+				Party = models.NewPartyModel()
+				return -2002
+			} else if player.PlayerLevel < 1 {
+				Party = models.NewPartyModel()
+				return -2003
+			} else if player.PlayerName == "" {
+				Party = models.NewPartyModel()
+				return -2004
+			}
+
 			Party.RemovePlayer(player.PlayerName)
 			Party.AddPlayer(player)
 
@@ -77,5 +94,5 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
-	wv.Navigate("http://127.0.0.1:12330/party")
+	wv.Navigate("http://127.0.0.1:12344/party")
 }

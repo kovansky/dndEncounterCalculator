@@ -48,9 +48,51 @@ $(document).ready(function() {
 
         // Declared in go
         readParty(characters).then((ret) => {
-            if((ret !== 0) || (ret === 0 && characters.length !== 0)) {
+            if(((ret !== 0) || (ret === 0 && characters.length !== 0)) && (ret > -2000)) {
                 // Declared in go
                 nextWindow()
+            } else {
+                let error = null
+
+                switch(ret) {
+                    case -2001:
+                        error = {
+                            error_number: 2001,
+                            error_description: "Party cannot be empty",
+                            error_type: 1
+                        }
+                        break
+                    case -2002:
+                        error = {
+                            error_number: 2002,
+                            error_description: "Player level cannot be null",
+                            error_type: 1
+                        }
+                        break
+                    case -2003:
+                        error = {
+                            error_number: 2003,
+                            error_description: "Player level cannot be less than 1",
+                            error_type: 1
+                        }
+                        break
+                    case -2004:
+                        error = {
+                            error_number: 2004,
+                            error_description: "Player name cannot be null",
+                            error_type: 1
+                        }
+                        break
+                }
+
+                lockWindow()
+                // Declared in go
+                runError(error)
+                    .then((ret) => {
+                        if(ret === 1) {
+                            unlockWindow()
+                        }
+                    })
             }
         })
     })
