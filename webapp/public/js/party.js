@@ -2,6 +2,7 @@ $(document).ready(function() {
     cloneTemplate("#charInputTmpl", "#content")
 
     // Declared in go
+    // ToDo: add populating saved party select box to load window state
     loadWindowState().then((ret) => {
         if(ret !== "") {
             let jsonData = JSON.parse(ret)
@@ -95,5 +96,56 @@ $(document).ready(function() {
                     })
             }
         })
+    })
+
+    $('#savedPartySelect').change(function() {
+        let id = $(this).val()
+
+        // ToDo: load party by id
+    })
+
+    $('.partyDelete').click(() => {
+        // ToDo: show "are you sure?" and delete by id logic
+    })
+
+    $('.saveParty').click(() => {
+        let party = {},
+            characters = {}
+
+        $("#content").find(".charInputContainer").each(function() {
+            let char = {
+                player_name: null,
+                player_level: null
+            }
+
+            char.player_name = $(this).children()[0].value
+            char.player_level = parseInt($(this).children()[1].value)
+
+            characters[char.player_name] = char
+        })
+
+        party.party_players = characters
+
+        let partyName = $('.partyName').val()
+
+        if(partyName === "") {
+            runError({
+                error_number: 2005,
+                error_description: "Party name cannot be empty",
+                error_type: 1
+            })
+                .then((ret) => {
+                    if(ret === 1) {
+                        unlockWindow()
+                    }
+                })
+        } else {
+            party.party_name = partyName
+            party.party_id = idFromString(partyName)
+
+            // ToDo: get return code. On 0 (success) add to listing
+            // Declared in go
+            writeParty(party)
+        }
     })
 })

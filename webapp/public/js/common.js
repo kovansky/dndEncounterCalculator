@@ -22,3 +22,7 @@ function unlockWindow() {
         el.removeClass('lockVisible')
     }
 }
+
+function idFromString(str) {
+    return str.replace(/\W/, '')
+}

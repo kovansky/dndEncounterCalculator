@@ -8,8 +8,11 @@ import (
 )
 
 var Party *models.PartyModel
+var SavedParties *misc.DataFile
 
 func PartyWindow(wv webview.WebView) {
+	SavedParties = misc.NewDataFile("parties.json").CheckFile()
+
 	wv.SetTitle("Create your party") // language
 	wv.SetSize(600, 750, webview.HintFixed)
 
@@ -94,5 +97,36 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
-	wv.Navigate("http://127.0.0.1:12360/party")
+	err = wv.Bind("writeParty", func(modelString json.RawMessage) int {
+		var (
+			model    = models.NewPartySaveModel()
+			oldModel map[string]models.PartySaveModel
+		)
+
+		json.Unmarshal(modelString, &model)
+
+		for _, player := range model.PartyPlayers {
+			if player.PlayerLevel == 0 {
+				Party = models.NewPartyModel()
+				return -2002
+			} else if player.PlayerLevel < 1 {
+				Party = models.NewPartyModel()
+				return -2003
+			} else if player.PlayerName == "" {
+				Party = models.NewPartyModel()
+				return -2004
+			}
+		}
+
+		SavedParties.LoadData(&oldModel)
+
+		oldModel[model.PartyId] = *model
+
+		SavedParties.WriteData(oldModel)
+
+		return 0
+	})
+	misc.Check(err)
+
+	wv.Navigate("http://127.0.0.1:12349/party")
 }
