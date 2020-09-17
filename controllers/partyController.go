@@ -11,7 +11,7 @@ var Party *models.PartyModel
 
 func PartyWindow(wv webview.WebView) {
 	wv.SetTitle("Create your party") // language
-	wv.SetSize(600, 550, webview.HintFixed)
+	wv.SetSize(600, 750, webview.HintFixed)
 
 	err := wv.Bind("readParty", func(modelString json.RawMessage) int {
 		if Party == nil {
@@ -94,5 +94,5 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
-	wv.Navigate("http://127.0.0.1:12344/party")
+	wv.Navigate("http://127.0.0.1:12360/party")
 }

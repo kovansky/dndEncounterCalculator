@@ -12,13 +12,23 @@
 <div id="partyCreator">
     <div id="header">
         <span class="winTitle">
-            Create your party
+            Choose or create your party
             <!-- language -->
         </span>
 
-        <span class="btn charNew">
-            <img class="btnIcon" src="/public/icons/plusIcon.svg" alt="">
-            <span class="btnText">Add new character</span>
+        <select name="savedParty" id="savedPartySelect" class="input selectInput savedParty">
+            <option value="-1" disabled selected>Choose saved party<!-- language --></option>
+        </select>
+
+        <span class="btn icnBtn partyDelete">
+            <img src="/public/icons/trashIcon.svg" alt="" class="btnIcon">
+        </span>
+
+        <input type="text" class="input textInput partyName" name="partyName" placeholder="Party name">
+
+        <span class="btn saveParty">
+            <img class="btnIcon" src="/public/icons/checkIcon.svg" alt="">
+            <span class="btnText">Save party</span>
             <!-- Language -->
         </span>
     </div>
@@ -51,6 +61,10 @@
                 <img src="/public/icons/closeIcon.svg" alt="" class="btnIcon">
             </span>
         </div>
+    </div>
+
+    <div id="partyOptionTmpl" class="tmpl">
+        <option value=""></option>
     </div>
 </div>
 </html>
