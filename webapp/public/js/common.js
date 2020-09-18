@@ -24,5 +24,5 @@ function unlockWindow() {
 }
 
 function idFromString(str) {
-    return str.replace(/\W/, '')
+    return str.replace(/\W/, '').toLowerCase()
 }

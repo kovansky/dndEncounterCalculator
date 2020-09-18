@@ -2,12 +2,19 @@ $(document).ready(function() {
     cloneTemplate("#charInputTmpl", "#content")
 
     // Declared in go
-    // ToDo: add populating saved party select box to load window state
     loadWindowState().then((ret) => {
-        if(ret !== "") {
-            let jsonData = JSON.parse(ret)
+        let jsonData = JSON.parse(ret)
 
-            jsonData.forEach((el, index) => {
+        let partySelect = $('#savedPartySelect')
+        $.each(jsonData.partiesSelect, (index, el) => {
+            partySelect.append($('<option>', {
+                value: index,
+                text: el
+            }))
+        })
+
+        if(jsonData.party !== "") {
+            jsonData.party.forEach((el, index) => {
                 let domElement = $("#content").find(".charInputContainer").last()
 
                 domElement.find(".charName").val(el.player_name)

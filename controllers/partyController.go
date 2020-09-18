@@ -16,7 +16,39 @@ func PartyWindow(wv webview.WebView) {
 	wv.SetTitle("Create your party") // language
 	wv.SetSize(600, 750, webview.HintFixed)
 
-	err := wv.Bind("readParty", func(modelString json.RawMessage) int {
+	err := wv.Bind("loadWindowState", func() string {
+		var (
+			ret    = make(map[string]interface{})
+			saved  map[string]models.PartySaveModel
+			idsMap = make(map[string]string)
+		)
+
+		if Party != nil {
+			var playersAsArray []models.PlayerModel
+
+			for _, player := range Party.PartyPlayers {
+				playersAsArray = append(playersAsArray, player)
+			}
+
+			ret["party"] = playersAsArray
+		} else {
+			ret["party"] = ""
+		}
+
+		SavedParties.LoadData(&saved)
+		for key, val := range saved {
+			idsMap[key] = val.PartyName
+		}
+		ret["partiesSelect"] = idsMap
+
+		retJson, err := json.Marshal(ret)
+		misc.Check(err)
+
+		return string(retJson)
+	})
+	misc.Check(err)
+
+	err = wv.Bind("readParty", func(modelString json.RawMessage) int {
 		if Party == nil {
 			Party = models.NewPartyModel()
 		}
@@ -70,33 +102,6 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
-	err = wv.Bind("nextWindow", func() bool {
-		MainWindow(wv)
-
-		return true
-	})
-	misc.Check(err)
-
-	err = wv.Bind("loadWindowState", func() string {
-		if Party != nil {
-			var playersAsArray []models.PlayerModel
-
-			for _, player := range Party.PartyPlayers {
-				playersAsArray = append(playersAsArray, player)
-			}
-
-			jsonP, err := json.Marshal(playersAsArray)
-			misc.Check(err)
-
-			stringed := string(jsonP)
-
-			return stringed
-		} else {
-			return ""
-		}
-	})
-	misc.Check(err)
-
 	err = wv.Bind("writeParty", func(modelString json.RawMessage) int {
 		var (
 			model    = models.NewPartySaveModel()
@@ -128,5 +133,12 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
-	wv.Navigate("http://127.0.0.1:12349/party")
+	err = wv.Bind("nextWindow", func() bool {
+		MainWindow(wv)
+
+		return true
+	})
+	misc.Check(err)
+
+	wv.Navigate("http://127.0.0.1:12351/party")
 }

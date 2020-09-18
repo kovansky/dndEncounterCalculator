@@ -174,7 +174,7 @@ func ErrorWindow(ch chan int, model models.ErrorModel) {
         retValue(1)
     })
 </script>
-</html>`, "http://127.0.0.1:12349", model.ErrorNumber, model.ErrorDescription, "http://127.0.0.1:12349"))
+</html>`, "http://127.0.0.1:12351", model.ErrorNumber, model.ErrorDescription, "http://127.0.0.1:12351"))
 
 	ew.Run()
 }

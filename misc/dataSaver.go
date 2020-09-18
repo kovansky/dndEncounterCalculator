@@ -30,13 +30,13 @@ func (receiver DataFile) loadDefaults() *DataFile {
 	return &receiver
 }
 
-func (receiver *DataFile) LoadData(ret interface{}) {
+func (receiver *DataFile) LoadData(target interface{}) {
 	fh, err := os.Open(receiver.FullPath)
 	Check(err)
 	defer fh.Close()
 
 	byteValue, _ := ioutil.ReadAll(fh)
-	err = json.Unmarshal(byteValue, &ret)
+	err = json.Unmarshal(byteValue, &target)
 	Check(err)
 }
 
