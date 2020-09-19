@@ -11,6 +11,7 @@ const (
 	APP_VERSION_CHECK_URL_STABLE = "https://github.com/kovansky/dndEncounterCalculator/raw/feature/DDC-13/versioning/latest-stable.txt"
 	APP_VERSION_CURRENT          = "0.1.0-DEV"
 	APP_VERSION_CODENAME         = "YMIR"
+	APP_UPDATE_URL               = "https://github.com/kovansky/dndEncounterCalculator/releases/tag/v%s"
 
 	// Application data
 	APP_GITHUB_REPO = "https://github.com/kovansky/dndEncounterCalculator"

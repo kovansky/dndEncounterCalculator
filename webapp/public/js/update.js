@@ -37,4 +37,14 @@ $(document).ready(function() {
             }
         })
     })
+
+    $('.okBtn').click(() => {
+        // Declared in go
+        retValue(1)
+    })
+
+    $('.ignoreBtn').click(() => {
+        // Declared in go
+        retValue(0)
+    })
 })

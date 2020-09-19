@@ -12,11 +12,11 @@ func main() {
 	go webapp.App()
 	go func() {
 		appVersion := models.GetAppVersion()
-		isUpdate, rMajor, rMinor, rPath, rChannel := appVersion.CheckForUpdates()
+		isUpdate, rMajor, rMinor, rPatch, rChannel := appVersion.CheckForUpdates()
 		remoteAvm := models.AppVersionModel{
 			Major:   rMajor,
 			Minor:   rMinor,
-			Path:    rPath,
+			Patch:   rPatch,
 			Channel: rChannel,
 		}
 

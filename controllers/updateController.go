@@ -2,8 +2,11 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
+	"github.com/kovansky/dndEncounterCalculator/constants"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
+	"github.com/pkg/browser"
 	"github.com/webview/webview"
 )
 
@@ -26,6 +29,19 @@ func UpdateWindow(currentVersion models.AppVersionModel, remoteVersion models.Ap
 		stringed := string(jsonData)
 
 		return stringed
+	})
+	misc.Check(err)
+
+	err = uw.Bind("retValue", func(code int) int {
+		if code == 1 {
+			url := fmt.Sprintf(constants.APP_UPDATE_URL, remoteVersion.ToString())
+
+			browser.OpenURL(url)
+		}
+
+		uw.Terminate()
+
+		return code
 	})
 	misc.Check(err)
 
