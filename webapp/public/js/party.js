@@ -108,6 +108,38 @@ $(document).ready(function() {
     $('#savedPartySelect').change(function() {
         let id = $(this).val()
 
+        // Declared in go
+        loadParty(id).then((ret) => {
+            let jsonData = JSON.parse(ret)
+
+            if(jsonData === "-2006") {
+                lockWindow()
+                // Declared in go
+                runError({
+                    error_number: 2006,
+                    error_description: "Party with id " + id + " does not exist in saved parties file.",
+                    error_type: 2
+                }).then((errRet) => {
+                    if(errRet === 1) {
+                        unlockWindow()
+                    }
+                })
+            } else {
+                $('.partyName').val(jsonData.party_name)
+
+                $('#content').html('')
+
+                $.each(jsonData.party_players, (name, value) => {
+                    cloneTemplate("#charInputTmpl", "#content")
+
+                    let domElement = $("#content").find(".charInputContainer").last()
+
+                    domElement.find(".charName").val(name)
+                    domElement.find(".charLevel").val(value.player_level)
+                })
+            }
+        })
+
         // ToDo: load party by id
     })
 

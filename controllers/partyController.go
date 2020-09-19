@@ -133,6 +133,21 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
+	err = wv.Bind("loadParty", func(partyId string) string {
+		var saved map[string]models.PartySaveModel
+
+		SavedParties.LoadData(&saved)
+
+		if value, found := saved[partyId]; found {
+			retJson, err := json.Marshal(value)
+			misc.Check(err)
+
+			return string(retJson)
+		} else {
+			return "-2006"
+		}
+	})
+
 	err = wv.Bind("nextWindow", func() bool {
 		MainWindow(wv)
 
