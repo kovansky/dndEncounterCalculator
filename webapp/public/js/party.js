@@ -139,8 +139,6 @@ $(document).ready(function() {
                 })
             }
         })
-
-        // ToDo: load party by id
     })
 
     $('.partyDelete').click(() => {
