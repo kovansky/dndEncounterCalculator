@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/kovansky/dndEncounterCalculator/controllers"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
@@ -13,10 +12,16 @@ func main() {
 	go webapp.App()
 	go func() {
 		appVersion := models.GetAppVersion()
-		isUpdate, _, _, _, _ := appVersion.CheckForUpdates()
+		isUpdate, rMajor, rMinor, rPath, rChannel := appVersion.CheckForUpdates()
+		remoteAvm := models.AppVersionModel{
+			Major:   rMajor,
+			Minor:   rMinor,
+			Path:    rPath,
+			Channel: rChannel,
+		}
 
 		if isUpdate {
-			fmt.Println("There is an update avaliable")
+			controllers.UpdateWindow(*appVersion, remoteAvm)
 		}
 	}()
 

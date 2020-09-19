@@ -10,13 +10,13 @@ import (
 )
 
 type AppVersionModel struct {
-	CodeName         string
-	Major            int
-	Minor            int
-	Path             int
-	Channel          enum.VersionChannel
-	UpdateExists     bool
-	CheckedForUpdate bool
+	CodeName         string              `json:"code_name"`
+	Major            int                 `json:"major"`
+	Minor            int                 `json:"minor"`
+	Path             int                 `json:"path"`
+	Channel          enum.VersionChannel `json:"channel"`
+	UpdateExists     bool                `json:"update_exists"`
+	CheckedForUpdate bool                `json:"checked_for_update"`
 }
 
 func GetAppVersion() *AppVersionModel {
