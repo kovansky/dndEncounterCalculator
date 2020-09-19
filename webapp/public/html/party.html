@@ -12,16 +12,32 @@
 <div id="partyCreator">
     <div id="header">
         <span class="winTitle">
-            Create your party
+            Choose or create your party
             <!-- language -->
         </span>
 
-        <span class="btn charNew">
-            <img class="btnIcon" src="/public/icons/plusIcon.svg" alt="">
-            <span class="btnText">Add new character</span>
+        <select name="savedParty" id="savedPartySelect" class="input selectInput savedParty">
+            <option value="-1" disabled selected>Choose saved party<!-- language --></option>
+        </select>
+
+        <span class="btn icnBtn partyDelete">
+            <img src="/public/icons/trashIcon.svg" alt="" class="btnIcon">
+        </span>
+
+        <input type="text" class="input textInput partyName" name="partyName" placeholder="Party name">
+
+        <span class="btn saveParty">
+            <img class="btnIcon" src="/public/icons/checkIcon.svg" alt="">
+            <span class="btnText">Save party</span>
             <!-- Language -->
         </span>
     </div>
+    <!-- ToDo: move button up, fields down -->
+    <span class="btn charNew">
+            <img class="btnIcon" src="/public/icons/plusIcon.svg" alt="">
+            <span class="btnText">Add new character</span>
+        <!-- Language -->
+        </span>
     <div id="content">
         <!-- place for fields -->
     </div>
@@ -31,6 +47,23 @@
             <span class="btnText">Next step</span>
             <!-- Language -->
         </span>
+    </div>
+
+    <div id="partyDeleteConfirmation">
+        <div id="confirmationDialog">
+            <span class="winTitle">
+                Are you sure you want to delete <span class="dataBold dataSync" data-cat="partySave" data-field="party_name">X</span> party?
+                <!-- language -->
+            </span>
+
+            <span class="btn icnBtn partyDeleteConfirm">
+                <img src="/public/icons/checkIconThin.svg" alt="" class="btnIcon">
+            </span>
+
+            <span class="btn icnBtn partyDeleteDecline">
+                <img src="/public/icons/closeIcon.svg" alt="" class="btnIcon">
+            </span>
+        </div>
     </div>
 </div>
 </body>

@@ -2,8 +2,10 @@
 @import "commons.css";
 
 html, body {
-    width:  600px;
-    height: 550px;
+    width:    600px;
+    height:   750px;
+
+    overflow: hidden;
 }
 
 #partyCreator {
@@ -16,18 +18,20 @@ html, body {
 }
 
 #header {
-    position: absolute;
-    width:    540px;
-    height:   95px;
-    left:     30px;
-    top:      10px;
+    position:      absolute;
+    width:         540px;
+    height:        200px;
+    left:          30px;
+    top:           10px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
 }
 
 .winTitle {
     position:    absolute;
-    width:       263px;
+    width:       413px;
     height:      42px;
-    left:        139px;
+    left:        64px;
     top:         0;
 
     font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
@@ -40,12 +44,51 @@ html, body {
     color:       #000000;
 }
 
+.savedParty {
+    position: absolute;
+    width:    200px;
+    height:   32px;
+    top:      50px;
+    left:     135px;
+}
+
+.saveParty {
+    position: absolute;
+    width:    150px;
+    height:   35px;
+    left:     195px;
+    top:      140px;
+}
+
+.partyDelete {
+    position: absolute;
+    width:    40px !important;
+    height:   40px !important;
+    left:     365px;
+    top:      45px;
+}
+
+.partyDelete .btnIcon {
+    width:  20px !important;
+    height: 20px !important;
+    top:    10px !important;
+    left:   10px !important;
+}
+
+.partyName {
+    position: absolute;
+    width:    270px;
+    height:   32px;
+    left:     135px;
+    top:      95px;
+}
+
 .charNew {
     position: absolute;
     width:    250px;
     height:   35px;
-    left:     146px;
-    top:      49px;
+    left:     175px;
+    top:      240px;
 }
 
 .charNew .btnText {
@@ -55,9 +98,9 @@ html, body {
 #content {
     position: absolute;
     width:    540px;
-    height:   365px;
+    height:   450px;
     left:     30px;
-    top:      110px;
+    top:      280px;
 }
 
 .charInputContainer {
@@ -88,7 +131,7 @@ html, body {
     position: absolute;
     width:    540px;
     height:   50px;
-    top:      500px;
+    top:      700px;
     left:     30px;
 }
 
@@ -102,4 +145,63 @@ html, body {
 
 .nextStep .btnText {
     width: 90px;
+}
+
+#partyDeleteConfirmation {
+    position:         absolute;
+    top:              0;
+    left:             0;
+
+    display:          none;
+    width:            100vw;
+    height:           100vh;
+    background-color: rgba(256, 256, 256, .6);
+
+    overflow-x:       hidden;
+}
+
+#partyDeleteConfirmation.visible {
+    display: block;
+}
+
+#confirmationDialog {
+    position: absolute;
+    width:    400px;
+    height:   150px;
+    left:     100px;
+    top:      300px;
+}
+
+#confirmationDialog .winTitle {
+    position:    absolute;
+    max-width:   212px;
+    height:      73px;
+    left:        94px;
+    top:         20px;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: 300;
+    font-size:   18px;
+    line-height: 24px;
+
+    color:       #000000;
+}
+
+.partyDeleteConfirm {
+    position:         absolute;
+    left:             125px;
+    top:              105px;
+    background-color: #00AD11;
+}
+
+.partyDeleteDecline {
+    position:         absolute;
+    left:             245px;
+    top:              105px;
+    background-color: #FF0000;
+}
+
+.dataBold {
+    font-weight: bold;
 }
