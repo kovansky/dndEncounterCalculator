@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UPDATE AVALIABLE</title> <!-- language -->
+    <script src="/public/libs/jQuery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="/public/css/update.css">
+    <script src="/public/js/common.js"></script>
+    <script src="/public/js/update.js"></script>
+</head>
+<body>
+<div id="updateBox">
+    <div id="iconContainer">
+        <img src="/public/icons/updateIcon.svg" alt="">
+    </div>
+    <div id="textContainer">
+        <p class="winTitle">
+            There is an update avaliable!
+            <!-- lanugage -->
+        </p>
+        <p class="currentVer">
+            Your version is: <span class="dataBold dataSync" data-cat="current" data-field="major">X</span>.
+            <span class="dataBold dataSync" data-cat="current" data-field="minor">X</span>.
+            <span class="dataBold dataSync" data-cat="current" data-field="patch">X</span>&nbsp;
+            (<span class="dataBold dataSync" data-cat="current" data-field="channel">XXXX</span>)
+        </p>
+        <p class="remoteVer">
+            The new version is: <span class="dataBold dataSync" data-cat="remote" data-field="major">X</span>.
+            <span class="dataBold dataSync" data-cat="remote" data-field="minor">X</span>.
+            <span class="dataBold dataSync" data-cat="remote" data-field="patch">X</span>&nbsp;
+            (<span class="dataBold dataSync" data-cat="remote" data-field="channel">XXXX</span>)
+        </p>
+
+        <div id="controls">
+            <span class="btn okBtn">
+                <img class="btnIcon" src="/public/icons/checkIconThin.svg" alt="">
+                <span class="btnText">Download</span>
+                <!-- language -->
+            </span>
+            <span class="btn ignoreBtn">
+                <img class="btnIcon" src="/public/icons/closeIcon.svg" alt="">
+                <span class="btnText">Ignore</span>
+                <!-- language -->
+            </span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

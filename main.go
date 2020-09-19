@@ -3,12 +3,27 @@ package main
 import (
 	"github.com/kovansky/dndEncounterCalculator/controllers"
 	"github.com/kovansky/dndEncounterCalculator/misc"
+	"github.com/kovansky/dndEncounterCalculator/models"
 	"github.com/kovansky/dndEncounterCalculator/webapp"
 	"github.com/webview/webview"
 )
 
 func main() {
 	go webapp.App()
+	go func() {
+		appVersion := models.GetAppVersion()
+		isUpdate, rMajor, rMinor, rPatch, rChannel := appVersion.CheckForUpdates()
+		remoteAvm := models.AppVersionModel{
+			Major:   rMajor,
+			Minor:   rMinor,
+			Patch:   rPatch,
+			Channel: rChannel,
+		}
+
+		if isUpdate {
+			controllers.UpdateWindow(*appVersion, remoteAvm)
+		}
+	}()
 
 	wv := webview.New(true)
 	defer wv.Destroy()
