@@ -166,6 +166,7 @@ $(document).ready(function() {
         let partyName = $('.partyName').val()
 
         if(partyName === "") {
+            lockWindow()
             runError({
                 error_number: 2005,
                 error_description: "Party name cannot be empty",
@@ -180,9 +181,52 @@ $(document).ready(function() {
             party.party_name = partyName
             party.party_id = idFromString(partyName)
 
-            // ToDo: get return code. On 0 (success) add to listing
             // Declared in go
-            writeParty(party)
+            writeParty(party).then((ret) => {
+                let error = null
+
+                switch(ret) {
+                    case -2002:
+                        error = {
+                            error_number: 2002,
+                            error_description: "Player level cannot be null",
+                            error_type: 1
+                        }
+                        break
+                    case -2003:
+                        error = {
+                            error_number: 2003,
+                            error_description: "Player level cannot be less than 1",
+                            error_type: 1
+                        }
+                        break
+                    case -2004:
+                        error = {
+                            error_number: 2004,
+                            error_description: "Player name cannot be null",
+                            error_type: 1
+                        }
+                        break
+                }
+
+                if(error != null) {
+                    lockWindow()
+                    // Declared in go
+                    runError(error)
+                        .then((ret) => {
+                            if(ret === 1) {
+                                unlockWindow()
+                            }
+                        })
+                } else if(ret === 0) {
+                    let partySelect = $('#savedPartySelect')
+
+                    partySelect.append($('<option>', {
+                        value: party.party_id,
+                        text: party.party_name
+                    }))
+                }
+            })
         }
     })
 })
