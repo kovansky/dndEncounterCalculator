@@ -28,6 +28,7 @@ func GetVersionCheckUrlByChannel(ch VersionChannel) string {
 	case VersionStable:
 		return constants.APP_VERSION_CHECK_URL_STABLE
 	case VersionBeta:
+		return constants.APP_VERSION_CHECK_URL_BETA
 	case VersionDev:
 		return constants.APP_VERSION_CHECK_URL_BETA
 	}
