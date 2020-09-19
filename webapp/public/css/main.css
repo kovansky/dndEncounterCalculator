@@ -4,8 +4,10 @@
 /* Window */
 
 html, body {
-    width:  1000px;
-    height: 675px;
+    width:    1000px;
+    height:   675px;
+
+    overflow: hidden;
 }
 
 #encounterCreator {
@@ -304,10 +306,4 @@ html, body {
 
 .encounterDifficultyResult.deadly {
     color: #DA0000;
-}
-
-/* Common */
-
-.dataBold {
-    font-weight: bold;
 }

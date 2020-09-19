@@ -2,8 +2,10 @@
 @import "commons.css";
 
 html, body {
-    width:  600px;
-    height: 750px;
+    width:    600px;
+    height:   750px;
+
+    overflow: hidden;
 }
 
 #partyCreator {
@@ -16,13 +18,13 @@ html, body {
 }
 
 #header {
-    position: absolute;
-    width:    540px;
-    height:   200px;
-    left:     30px;
-    top:      10px;
+    position:      absolute;
+    width:         540px;
+    height:        200px;
+    left:          30px;
+    top:           10px;
 
-    border-bottom: 1px solid rgba(0,0,0,1);
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
 }
 
 .winTitle {
@@ -143,4 +145,63 @@ html, body {
 
 .nextStep .btnText {
     width: 90px;
+}
+
+#partyDeleteConfirmation {
+    position:         absolute;
+    top:              0;
+    left:             0;
+
+    display:          none;
+    width:            100vw;
+    height:           100vh;
+    background-color: rgba(256, 256, 256, .6);
+
+    overflow-x:       hidden;
+}
+
+#partyDeleteConfirmation.visible {
+    display: block;
+}
+
+#confirmationDialog {
+    position: absolute;
+    width:    400px;
+    height:   150px;
+    left:     100px;
+    top:      300px;
+}
+
+#confirmationDialog .winTitle {
+    position:    absolute;
+    max-width:   212px;
+    height:      73px;
+    left:        94px;
+    top:         20px;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: 300;
+    font-size:   18px;
+    line-height: 24px;
+
+    color:       #000000;
+}
+
+.partyDeleteConfirm {
+    position:         absolute;
+    left:             125px;
+    top:              105px;
+    background-color: #00AD11;
+}
+
+.partyDeleteDecline {
+    position:         absolute;
+    left:             245px;
+    top:              105px;
+    background-color: #FF0000;
+}
+
+.dataBold {
+    font-weight: bold;
 }

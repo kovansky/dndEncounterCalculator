@@ -147,6 +147,24 @@ func PartyWindow(wv webview.WebView) {
 			return "-2006"
 		}
 	})
+	misc.Check(err)
+
+	err = wv.Bind("removeParty", func(partyId string) int {
+		var saved map[string]models.PartySaveModel
+
+		SavedParties.LoadData(&saved)
+
+		if _, found := saved[partyId]; found {
+			delete(saved, partyId)
+
+			SavedParties.WriteData(saved)
+
+			return 1
+		} else {
+			return -2006
+		}
+	})
+	misc.Check(err)
 
 	err = wv.Bind("nextWindow", func() bool {
 		MainWindow(wv)
@@ -155,5 +173,5 @@ func PartyWindow(wv webview.WebView) {
 	})
 	misc.Check(err)
 
-	wv.Navigate("http://127.0.0.1:12351/party")
+	wv.Navigate("http://127.0.0.1:12354/party")
 }

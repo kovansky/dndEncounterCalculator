@@ -5,9 +5,9 @@ $(document).ready(function() {
     loadWindowState().then((ret) => {
         let jsonData = JSON.parse(ret)
 
-        let partySelect = $('#savedPartySelect')
+        let partySelect = $("#savedPartySelect")
         $.each(jsonData.partiesSelect, (index, el) => {
-            partySelect.append($('<option>', {
+            partySelect.append($("<option>", {
                 value: index,
                 text: el
             }))
@@ -105,7 +105,7 @@ $(document).ready(function() {
         })
     })
 
-    $('#savedPartySelect').change(function() {
+    $("#savedPartySelect").change(function() {
         let id = $(this).val()
 
         // Declared in go
@@ -125,9 +125,9 @@ $(document).ready(function() {
                     }
                 })
             } else {
-                $('.partyName').val(jsonData.party_name)
+                $(".partyName").val(jsonData.party_name)
 
-                $('#content').html('')
+                $("#content").html("")
 
                 $.each(jsonData.party_players, (name, value) => {
                     cloneTemplate("#charInputTmpl", "#content")
@@ -141,11 +141,64 @@ $(document).ready(function() {
         })
     })
 
-    $('.partyDelete').click(() => {
-        // ToDo: show "are you sure?" and delete by id logic
+    $(".partyDelete").click(() => {
+        let container = $("#partyDeleteConfirmation"),
+            select = $("#savedPartySelect"),
+            selectText = $("#savedPartySelect option:selected").text()
+
+        if(select.val() !== null) {
+            container.addClass("visible")
+            container.find(".dataSync[data-field=\"party_name\"]").html(selectText).data("party_id", select.val())
+        } else {
+            lockWindow()
+            runError({
+                error_number: 2007,
+                error_description: "You have to select the party you want to delete.",
+                error_type: 1
+            })
+                .then((ret) => {
+                    if(ret === 1) {
+                        unlockWindow()
+                    }
+                })
+        }
     })
 
-    $('.saveParty').click(() => {
+    $(".partyDeleteDecline").click(() => {
+        let container = $("#partyDeleteConfirmation")
+
+        container.removeClass("visible")
+    })
+
+    $(".partyDeleteConfirm").click(() => {
+        let container = $("#partyDeleteConfirmation"),
+            party_id = container.find(".dataSync[data-field=\"party_name\"]").data("party_id")
+
+        // Declared in go
+        removeParty(party_id).then((ret) => {
+            if(ret === 1) {
+                $("#savedPartySelect option[value=\"" + party_id + "\"]").remove()
+
+                container.removeClass("visible")
+            } else if(ret === -2006) {
+                lockWindow()
+                // Declared in go
+                runError({
+                    error_number: 2006,
+                    error_description: "Party with id " + party_id + " does not exist in saved parties file.",
+                    error_type: 2
+                }).then((errRet) => {
+                    if(errRet === 1) {
+                        container.removeClass("visible")
+
+                        unlockWindow()
+                    }
+                })
+            }
+        })
+    })
+
+    $(".saveParty").click(() => {
         let party = {},
             characters = {}
 
@@ -163,7 +216,7 @@ $(document).ready(function() {
 
         party.party_players = characters
 
-        let partyName = $('.partyName').val()
+        let partyName = $(".partyName").val()
 
         if(partyName === "") {
             lockWindow()
@@ -219,9 +272,9 @@ $(document).ready(function() {
                             }
                         })
                 } else if(ret === 0) {
-                    let partySelect = $('#savedPartySelect')
+                    let partySelect = $("#savedPartySelect")
 
-                    partySelect.append($('<option>', {
+                    partySelect.append($("<option>", {
                         value: party.party_id,
                         text: party.party_name
                     }))
