@@ -1,7 +1,11 @@
 package enum
 
-import "github.com/kovansky/dndEncounterCalculator/constants"
+import (
+	"github.com/kovansky/dndEncounterCalculator/constants"
+	"strings"
+)
 
+//VersionChannel specifies possible version channels
 type VersionChannel string
 
 const (
@@ -10,8 +14,9 @@ const (
 	VersionDev    VersionChannel = "DEV"
 )
 
+//VersionChannelByString returns version channel by string, or Stable if string doesn't relate to any existing channel
 func VersionChannelByString(str string) VersionChannel {
-	switch str {
+	switch strings.ToUpper(str) {
 	case "STABLE":
 		return VersionStable
 	case "BETA":
@@ -23,6 +28,7 @@ func VersionChannelByString(str string) VersionChannel {
 	}
 }
 
+//GetVersionCheckUrlByChannel returns an version check URL corresponding to the version channel
 func GetVersionCheckUrlByChannel(ch VersionChannel) string {
 	switch ch {
 	case VersionStable:

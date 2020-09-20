@@ -1,5 +1,6 @@
 package enum
 
+//GroupType specifies monster group size types. The constants are holding the types low thresholds
 type GroupType int
 
 const (
@@ -12,6 +13,7 @@ const (
 	MonsterHorde      GroupType = 15
 )
 
+//GroupTypeByAmount compares given size with possible group types
 func GroupTypeByAmount(amount int) GroupType {
 	if amount == 1 {
 		return MonsterSingle
@@ -30,6 +32,7 @@ func GroupTypeByAmount(amount int) GroupType {
 	}
 }
 
+//GroupTypeName returns group type name
 func GroupTypeName(groupType GroupType) string {
 	// language
 	switch groupType {
