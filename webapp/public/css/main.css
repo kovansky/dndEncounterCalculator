@@ -1,8 +1,11 @@
+/*
+ * This file contains styles for Main View
+ */
+
 @import "fonts.css";
 @import "commons.css";
 
 /* Window */
-
 html, body {
     width:    1000px;
     height:   675px;
@@ -19,8 +22,9 @@ html, body {
     box-sizing: border-box;
 }
 
-/* Header (party summary) */
-
+/*
+Header (party summary)
+*/
 #partyDataBox {
     position: absolute;
     width:    940px;
@@ -29,6 +33,7 @@ html, body {
     top:      15px;
 }
 
+/* Left side (party size) */
 #partySummary {
     position: absolute;
     width:    213px;
@@ -37,6 +42,7 @@ html, body {
     top:      8px;
 }
 
+/* Block title */
 #partySummary .blockHeader {
     position:    absolute;
     width:       127px;
@@ -54,6 +60,7 @@ html, body {
     color:       #000000;
 }
 
+/* Block data */
 #partySummary .block {
     position:    absolute;
     width:       213px;
@@ -71,6 +78,7 @@ html, body {
     color:       #000000;
 }
 
+/* Right side (party thresholds) */
 #thresholdsBlock {
     position: absolute;
     width:    480px;
@@ -79,6 +87,7 @@ html, body {
     top:      34px;
 }
 
+/* Block data */
 #thresholdEasy {
     position: absolute;
     width:    120px;
@@ -147,6 +156,7 @@ html, body {
     text-align:  center;
 }
 
+/* Edit party button */
 .editParty {
     position: absolute;
     width:    115px;
@@ -155,7 +165,9 @@ html, body {
     top:      38px;
 }
 
-/* Content (monsters form and results) */
+/*
+Content (monsters form and results)
+*/
 #content {
     position: absolute;
     width:    940px;
@@ -164,6 +176,7 @@ html, body {
     top:      130px;
 }
 
+/* Container */
 #monstersForm {
     position: absolute;
     width:    383px;
@@ -172,6 +185,7 @@ html, body {
     top:      0;
 }
 
+/* Title */
 #monstersForm .blockHeader {
     position:    absolute;
     width:       280px;
@@ -189,6 +203,7 @@ html, body {
     color:       #000000;
 }
 
+/* Footer */
 #monstersForm .blockFooter {
     position: absolute;
     width:    160px;
@@ -197,11 +212,13 @@ html, body {
     top:      480px;
 }
 
+/* Add monster button */
 #monstersForm .addMonster {
     width:  160px;
     height: 25px;
 }
 
+/* Input container (template) */
 .monsterInputContainer {
     position:      relative;
     width:         340px;
@@ -219,6 +236,7 @@ html, body {
     text-align:    right;
 }
 
+/* Template fields */
 .monsterAmount {
     width:        17px;
     height:       20px;
@@ -244,6 +262,7 @@ html, body {
     text-align:   center;
 }
 
+/* Monster delete button */
 .monsterDelete {
     position: absolute;
     left:     345px;
@@ -252,7 +271,7 @@ html, body {
 
 /* Fixme: added fields are falling under the button and dale */
 
-/* Results */
+/* Results block */
 #results {
     position: absolute;
     width:    537px;
@@ -261,10 +280,12 @@ html, body {
     top:      0;
 }
 
+/* Hide, when no results */
 #results.empty {
     display: none;
 }
 
+/* Typography */
 #results p {
     margin-left:   10px;
     margin-bottom: 15px;
