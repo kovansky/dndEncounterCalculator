@@ -2,7 +2,7 @@ package models
 
 import "github.com/kovansky/dndEncounterCalculator/models/enum"
 
-//EnemiesModel model of enemies group
+//EnemiesModel is a model of whole enemies group
 type EnemiesModel struct {
 	GroupMonsters     map[string]MonsterModel
 	GroupSize         int
