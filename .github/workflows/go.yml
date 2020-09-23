@@ -40,3 +40,5 @@ jobs:
           targets: windows/amd64,linux/amd64
           v: true
           ldflags: "\"-H windowsgui\""
+        env:
+          GOPATH: /home/runner/go
