@@ -43,4 +43,4 @@ jobs:
           v: true
           ldflags: "\"-H windowsgui\""
         env:
-          GOPATH: /home/runner/work/dndEncounterCalculator/go
+          GOPATH: /home/runner/work/dndEncounterCalculator/dndEncounterCalculator/go
