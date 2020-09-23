@@ -1,5 +1,9 @@
+/*
+Package enum is holding all enumerated constants used in application
+*/
 package enum
 
+//EncounterDifficulty specifies possible encounter difficulty levels
 type EncounterDifficulty string
 
 const (
@@ -10,6 +14,7 @@ const (
 	EncounterDeadly  EncounterDifficulty = "deadly"
 )
 
+//CalculateEncounterDifficulty compares adjustedXP to party thresholds and specifies the encounter difficulty
 func CalculateEncounterDifficulty(thresholds map[string]int, adjustedXP float32) EncounterDifficulty {
 	if adjustedXP < float32(thresholds["easy"]) {
 		return EncounterTrivial

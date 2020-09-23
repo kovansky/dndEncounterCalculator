@@ -6,20 +6,27 @@ import (
 	"github.com/webview/webview"
 )
 
+//ErrorWindow is a controller function of Error View (dialog). It creates a WebView window
 func ErrorWindow(ch chan int, model models.ErrorModel) {
+	// Create webview window, and defer destroying it
 	ew := webview.New(false)
 	defer ew.Destroy()
 
+	// Adjust window data to view
 	ew.SetTitle("Error") // language
 	ew.SetSize(600, 200, webview.HintFixed)
 
-	err := ew.Bind("retValue", func(status int) int {
-		ch <- status
+	// Dialog controls (buttons) logic
+	err := ew.Bind("retValue", func(code int) int {
+		// Loads dialog code to return channel
+		ch <- code
+		// Close dialog window
 		ew.Terminate()
-		return status
+		return code
 	})
 	Check(err)
 
+	// Opens Error View in window
 	ew.Navigate("data:text/html," + fmt.Sprintf(`<!doctype html>
 <html>
 <style>
@@ -176,5 +183,6 @@ func ErrorWindow(ch chan int, model models.ErrorModel) {
 </script>
 </html>`, "http://127.0.0.1:12354", model.ErrorNumber, model.ErrorDescription, "http://127.0.0.1:12354"))
 
+	// Runs window code
 	ew.Run()
 }

@@ -1,6 +1,7 @@
 package constants
 
 var (
+	//EasyThresholds is a variable (considered as constant), that holds D&D thresholds for an easy encounter for each player level.
 	EasyThresholds = map[int]int{
 		1:  25,
 		2:  50,
@@ -23,6 +24,7 @@ var (
 		19: 2400,
 		20: 2800,
 	}
+	//MediumThresholds is a variable (considered as constant), that holds D&D thresholds for an medium encounter for each player level.
 	MediumThresholds = map[int]int{
 		1:  50,
 		2:  100,
@@ -45,6 +47,7 @@ var (
 		19: 4900,
 		20: 5700,
 	}
+	//HardThresholds is a variable (considered as constant), that holds D&D thresholds for an hard encounter for each player level.
 	HardThresholds = map[int]int{
 		1:  75,
 		2:  150,
@@ -67,6 +70,7 @@ var (
 		19: 7300,
 		20: 8500,
 	}
+	//DeadlyThresholds is a variable (considered as constant), that holds D&D thresholds for an deadly encounter for each player level.
 	DeadlyThresholds = map[int]int{
 		1:  100,
 		2:  200,

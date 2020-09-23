@@ -1,5 +1,6 @@
 package constants
 
+//CRXP is a variable (considered as constant), that holds the relation between the D&D monsters CR and their XP values
 var CRXP = map[float32]int{
 	0:     0,
 	0.125: 25,

@@ -1,8 +1,11 @@
+/*
+ * This file contains styles for Update View
+ */
+
 @import "fonts.css";
 @import "commons.css";
 
 /* Window */
-
 html, body {
     width:    600px;
     height:   200px;
@@ -19,6 +22,9 @@ html, body {
     box-sizing: border-box;
 }
 
+/*
+Left side (dialog icon)
+*/
 #iconContainer {
     position: absolute;
     width:    170px;
@@ -27,6 +33,7 @@ html, body {
     top:      0;
 }
 
+/* Icon */
 #iconContainer img {
     position: absolute;
     width:    110px;
@@ -35,6 +42,9 @@ html, body {
     left:     30px;
 }
 
+/*
+Right side (dialog text and controls)
+*/
 #textContainer {
     position: absolute;
     width:    430px;
@@ -43,6 +53,7 @@ html, body {
     top:      0;
 }
 
+/* Windows title */
 .winTitle {
     position:    absolute;
     width:       297px;
@@ -60,6 +71,7 @@ html, body {
     color:       #000000;
 }
 
+/* Dialog text (data) */
 .currentVer {
     left: 32px;
     top:  50px;
@@ -85,6 +97,7 @@ html, body {
     color:       #000000;
 }
 
+/* Controls (buttons) */
 .okBtn {
     position: absolute;
     width:    145px;

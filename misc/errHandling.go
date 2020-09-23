@@ -5,6 +5,11 @@ import (
 	"github.com/kovansky/dndEncounterCalculator/models"
 )
 
+/*
+This file declares functions related with error handling
+*/
+
+//Check checks if error exists, and runs an Error Dialog
 func Check(err error) {
 	if err != nil {
 		r := ThrowErrorGo(models.ErrorModel{
@@ -18,17 +23,23 @@ func Check(err error) {
 	}
 }
 
+//ThrowError runs an Error Dialog (misc/errorController.go) with error model provided as json
 func ThrowError(modelString json.RawMessage) int {
 	var model models.ErrorModel
 
+	// Unmarshal json data to go Error Model
 	json.Unmarshal(modelString, &model)
 
 	return ThrowErrorGo(model)
 }
 
+//ThrowErrorGO runs an Error Dialog (misc/errorController.go) with error model provided as go model
 func ThrowErrorGo(model models.ErrorModel) int {
+	// Create channel, that reads dialog output
 	ch := make(chan int)
+	// Open dialog
 	go ErrorWindow(ch, model)
 
+	// Return dialog output
 	return <-ch
 }

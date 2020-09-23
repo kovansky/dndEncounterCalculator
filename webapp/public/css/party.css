@@ -1,6 +1,11 @@
+/*
+ * This file contains styles for Party View
+ */
+
 @import "fonts.css";
 @import "commons.css";
 
+/* Window */
 html, body {
     width:    600px;
     height:   750px;
@@ -17,6 +22,9 @@ html, body {
     box-sizing: border-box;
 }
 
+/*
+Header (party saver, selector)
+*/
 #header {
     position:      absolute;
     width:         540px;
@@ -27,6 +35,7 @@ html, body {
     border-bottom: 1px solid rgba(0, 0, 0, 1);
 }
 
+/* Windows title */
 .winTitle {
     position:    absolute;
     width:       413px;
@@ -44,6 +53,7 @@ html, body {
     color:       #000000;
 }
 
+/* Saved party selector (<select>) */
 .savedParty {
     position: absolute;
     width:    200px;
@@ -52,6 +62,7 @@ html, body {
     left:     135px;
 }
 
+/* Save party button */
 .saveParty {
     position: absolute;
     width:    150px;
@@ -60,6 +71,7 @@ html, body {
     top:      140px;
 }
 
+/* Delete party button */
 .partyDelete {
     position: absolute;
     width:    40px !important;
@@ -75,6 +87,7 @@ html, body {
     left:   10px !important;
 }
 
+/* Party name input */
 .partyName {
     position: absolute;
     width:    270px;
@@ -83,6 +96,10 @@ html, body {
     top:      95px;
 }
 
+/*
+Content (party form)
+*/
+/* Add char button */
 .charNew {
     position: absolute;
     width:    250px;
@@ -103,6 +120,7 @@ html, body {
     top:      280px;
 }
 
+/* Character input container (template) */
 .charInputContainer {
     position: relative;
     width:    425px;
@@ -110,11 +128,13 @@ html, body {
     margin:   0 auto;
 }
 
+/* Character name input */
 .charName {
     width:        254px;
     margin-right: 22px;
 }
 
+/* Character level input */
 .charLevel {
     width:      60px;
     text-align: center;
@@ -122,11 +142,15 @@ html, body {
 
 /* Fixme: added fields are falling under the button and dale */
 
+/* Character delete button */
 .charInputContainer .btn.icnBtn {
     right: 0;
     top:   1px;
 }
 
+/*
+Footer
+*/
 #footer {
     position: absolute;
     width:    540px;
@@ -135,6 +159,7 @@ html, body {
     left:     30px;
 }
 
+/* Confirmation (next window) button */
 .nextStep {
     position: absolute;
     width:    150px;
@@ -147,6 +172,7 @@ html, body {
     width: 90px;
 }
 
+/* Lock for confirmation of party delete */
 #partyDeleteConfirmation {
     position:         absolute;
     top:              0;
@@ -164,6 +190,7 @@ html, body {
     display: block;
 }
 
+/* Confirmation dialog (div) itself */
 #confirmationDialog {
     position: absolute;
     width:    400px;
@@ -172,6 +199,7 @@ html, body {
     top:      300px;
 }
 
+/* Confirmation dialog title (text) */
 #confirmationDialog .winTitle {
     position:    absolute;
     max-width:   212px;
@@ -188,6 +216,7 @@ html, body {
     color:       #000000;
 }
 
+/* Confirmation dialog controls (accept/decline buttons) */
 .partyDeleteConfirm {
     position:         absolute;
     left:             125px;
@@ -200,8 +229,4 @@ html, body {
     left:             245px;
     top:              105px;
     background-color: #FF0000;
-}
-
-.dataBold {
-    font-weight: bold;
 }

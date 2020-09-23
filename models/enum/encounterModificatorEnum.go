@@ -1,5 +1,6 @@
 package enum
 
+//EncounterModifier specifies possible encounter modifiers
 type EncounterModifier float32
 
 const (
@@ -13,6 +14,7 @@ const (
 	ModifierSmall  EncounterModifier = 5
 )
 
+//CalculateEncounterModificator compares enemies group size and returns corresponding modifier, considering the party size
 func CalculateEncounterModificator(partySize PartyCategory, groupType GroupType) EncounterModifier {
 	switch partySize {
 	case PartySmall:

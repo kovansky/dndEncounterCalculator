@@ -7,6 +7,10 @@ What does error code mean?
 
 `### 1001 (error number) Error description (error type 1-2-3)`  
 
+## 1000
+*Runtime error.*
+### 1000 `Another error occurred` - error description provided from code (3)
+
 ## 2000
 *Party-related errors.*
 ### 2001 `Party cannot be empty` (1)

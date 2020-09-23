@@ -2,6 +2,7 @@ package models
 
 import "github.com/kovansky/dndEncounterCalculator/models/enum"
 
+//ResultsModel is a model of return message, holding encounter difficulty calculations and XP data
 type ResultsModel struct {
 	MonstersAmount      int                      `json:"monsters_amount"`
 	MonstersGroupType   string                   `json:"monsters_group_type"`
