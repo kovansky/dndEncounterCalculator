@@ -33,7 +33,7 @@ $(document).ready(function() {
                 domElement.find(".charLevel").val(el.player_level)
 
                 // ...then clone another input template, if necessary
-                if(index !== jsonData.length - 1) {
+                if(index !== jsonData.party.length - 1) {
                     cloneTemplate("#charInputTmpl", "#content")
                 }
             })
