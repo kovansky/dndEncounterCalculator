@@ -1,3 +1,6 @@
+/*
+Package models implements application data models, used to communicate with JavaScript, hold data and write it to the disk.
+*/
 package models
 
 import (

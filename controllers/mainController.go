@@ -1,3 +1,6 @@
+/*
+Package controllers implements Controllers of application Views, their logic and communication between them and Views.
+*/
 package controllers
 
 import (

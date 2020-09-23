@@ -1,3 +1,6 @@
+/*
+Package constants holds all constant information used in application
+*/
 package constants
 
 /*

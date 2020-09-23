@@ -1,3 +1,6 @@
+/*
+Package main holds application startup code
+*/
 package main
 
 import (

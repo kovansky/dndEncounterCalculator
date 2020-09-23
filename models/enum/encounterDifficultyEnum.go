@@ -1,3 +1,6 @@
+/*
+Package enum is holding all enumerated constants used in application
+*/
 package enum
 
 //EncounterDifficulty specifies possible encounter difficulty levels

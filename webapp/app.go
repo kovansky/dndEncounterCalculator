@@ -1,3 +1,6 @@
+/*
+Package webapp holds Web Application code - the server listener and routes handlers
+*/
 package webapp
 
 import (
@@ -11,9 +14,10 @@ func App() {
 	mux := http.NewServeMux()
 	// Register handlers
 	mux.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./webapp/public/")))) // Static resources (images, stylesheets, script files)
-	mux.HandleFunc("/party", party)                                                                     // Party view
-	mux.HandleFunc("/main", main)                                                                       // Main view
-	mux.HandleFunc("/update", update)                                                                   // Update view
+
+	mux.HandleFunc("/party", party)   // Party view
+	mux.HandleFunc("/main", main)     // Main view
+	mux.HandleFunc("/update", update) // Update view
 
 	// Create server configuration
 	server := &http.Server{

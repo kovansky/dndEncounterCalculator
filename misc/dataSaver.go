@@ -1,3 +1,6 @@
+/*
+Package misc holds smaller, one-file parts of program
+*/
 package misc
 
 import (
