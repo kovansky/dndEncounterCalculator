@@ -41,7 +41,7 @@ func UpdateWindow(currentVersion models.AppVersionModel, remoteVersion models.Ap
 	err = uw.Bind("retValue", func(code int) int {
 		// If "yes" ("download update") button clicked, open update URL in browser
 		if code == 1 {
-			url := fmt.Sprintf(constants.APP_UPDATE_URL, remoteVersion.ToString())
+			url := fmt.Sprintf(constants.APP_UPDATE_URL, remoteVersion.String())
 
 			browser.OpenURL(url)
 		}
