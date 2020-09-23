@@ -31,10 +31,11 @@ jobs:
           format: YYMMDDHHmm
           utcOffset: "+02:00"
 
+      - run: pwd
+
       - name: Build with xGo
         uses: crazy-max/ghaction-xgo@v1.4.0
         id: xgo-build
-        run: pwd
         with:
           dest: builds
           xgo_version: latest
