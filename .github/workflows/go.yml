@@ -31,6 +31,11 @@ jobs:
           format: YYMMDDHHmm
           utcOffset: "+02:00"
 
+      - name: Check checkout directory
+        run: |
+          ls /home/runner/work/dndEncounterCalculator/dndEncounterCalculator
+          ls /home/runner/work/dndEncounterCalculator/dndEncounterCalculator/go/src/github.com/kovansky/dndEncounterCalculator
+
       - name: Build with xGo
         uses: crazy-max/ghaction-xgo@v1.4.0
         id: xgo-build
