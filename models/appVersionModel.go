@@ -97,7 +97,7 @@ func (avm *AppVersionModel) CheckForUpdates() (bool, int, int, int, enum.Version
 	}
 }
 
-//ToString returns version string ("MAJOR.MINOR.PATCH-CHANNEL")
-func (avm AppVersionModel) ToString() string {
+//String returns version string ("MAJOR.MINOR.PATCH-CHANNEL")
+func (avm AppVersionModel) String() string {
 	return fmt.Sprintf("%d.%d.%d-%s", avm.Major, avm.Minor, avm.Patch, avm.Channel)
 }

@@ -44,7 +44,7 @@ $(document).ready(function() {
             let jsonData = JSON.parse(ret)
 
             // For each monster existing in js object...
-            jsonData.forEach((el, index) => {
+            jsonData.forEach((el, index) => { // index - index (int), el - monster (object)
                 // ...select last (empty) input...
                 let domElement = $(".fields").find(".monsterInputContainer").last()
 
@@ -67,6 +67,7 @@ $(document).ready(function() {
 
     // Add monster button click event handler
     $(".addMonster").click(() => {
+        // Add empty monster input to view
         cloneTemplate("#monsterInputTmpl", "#monstersForm .fields")
     })
 
