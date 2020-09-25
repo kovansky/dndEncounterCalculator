@@ -49,7 +49,9 @@ func (receiver *DataFile) LoadData(target interface{}) {
 
 	// Tries to fit the file value into passed variable
 	err = json.Unmarshal(byteValue, &target)
-	Check(err)
+	if err != nil {
+		target = nil
+	}
 }
 
 //WriteData writes passed data to disk

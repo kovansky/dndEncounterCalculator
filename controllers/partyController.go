@@ -52,12 +52,16 @@ func PartyWindow(wv webview.WebView) {
 		// Read saved parties from disk
 		SavedParties.LoadData(&saved)
 
-		// Populate idsMap with saved parties
-		for key, val := range saved {
-			idsMap[key] = val.PartyName
+		if saved != nil {
+			// Populate idsMap with saved parties
+			for key, val := range saved {
+				idsMap[key] = val.PartyName
+			}
+			// Add to return
+			ret["partiesSelect"] = idsMap
+		} else {
+			ret["partiesSelect"] = map[string]string{}
 		}
-		// Add to return
-		ret["partiesSelect"] = idsMap
 
 		// Marshal return value to json
 		retJson, err := json.Marshal(ret)
@@ -163,6 +167,10 @@ func PartyWindow(wv webview.WebView) {
 		// Read currently saved parties from disk
 		SavedParties.LoadData(&oldModel)
 
+		if oldModel == nil {
+			oldModel = make(map[string]models.PartySaveModel)
+		}
+
 		// Update party model by id
 		oldModel[model.PartyId] = *model
 
@@ -181,13 +189,18 @@ func PartyWindow(wv webview.WebView) {
 		// Read saved parties from disk
 		SavedParties.LoadData(&saved)
 
-		// Check, if party with requested id exists on disk
-		if value, found := saved[partyId]; found {
-			// Marshal party data to json
-			retJson, err := json.Marshal(value)
-			misc.Check(err)
+		if saved != nil {
+			// Check, if party with requested id exists on disk
+			if value, found := saved[partyId]; found {
+				// Marshal party data to json
+				retJson, err := json.Marshal(value)
+				misc.Check(err)
 
-			return string(retJson)
+				return string(retJson)
+			} else {
+				// Return error, error description in misc/errorsIndex.md
+				return "-2006"
+			}
 		} else {
 			// Return error, error description in misc/errorsIndex.md
 			return "-2006"
@@ -203,15 +216,20 @@ func PartyWindow(wv webview.WebView) {
 		// Read saved parties from disk
 		SavedParties.LoadData(&saved)
 
-		// Check, if party with requested id exists on disk
-		if _, found := saved[partyId]; found {
-			// Delete party by id from map
-			delete(saved, partyId)
+		if saved != nil {
+			// Check, if party with requested id exists on disk
+			if _, found := saved[partyId]; found {
+				// Delete party by id from map
+				delete(saved, partyId)
 
-			// Overwrite saved parties to disk
-			SavedParties.WriteData(saved)
+				// Overwrite saved parties to disk
+				SavedParties.WriteData(saved)
 
-			return 1
+				return 1
+			} else {
+				// Return error, error description in misc/errorsIndex.md
+				return -2006
+			}
 		} else {
 			// Return error, error description in misc/errorsIndex.md
 			return -2006
