@@ -38,6 +38,8 @@ jobs:
             curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
             dep ensure
           fi
+        env:
+          GOPATH: /home/runner/work/dndEncounterCalculator/dndEncounterCalculator/go
 
       - name: Get C compiler
         id: c
