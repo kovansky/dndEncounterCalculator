@@ -1,0 +1,44 @@
+name: Pure Go
+
+on:
+  push:
+    branches:
+      - develop
+      - release/*
+      - feature/DDC-14
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.13
+        id: go
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get current time
+        uses: 1466587594/get-current-time@v2
+        id: current-time
+        with:
+          format: YYMMDDHHmm
+          utcOffset: "+02:00"
+
+      - name: Prepare deps
+        id: dep
+        run: |
+          sudo apt-get install gcc-multilib
+          sudo apt-get install gcc-mingw-64
+
+      - name: Build (Windows)
+        id: build-windows
+        run: CC=amd64-w64-mingw64-gcc GOOS=windows GOARCH=amd64 CGO_ENABLED=1 go build
+
+      - name: Build (Linux)
+        id: build-linux
+        run: GOOS=linux GOARCH=amd64 CGO_ENABLED=1 go build

@@ -3,9 +3,7 @@ name: Go
 on:
   push:
     branches:
-      - develop
-      - release/*
-      - feature/DDC-14
+      - master # to not activate
 
 jobs:
 
@@ -13,16 +11,16 @@ jobs:
     name: xGo Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          path: go/src/github.com/kovansky/dndEncounterCalculator
-
       - name: Set up Go 1.13
         uses: actions/setup-go@v2
         with:
           go-version: ^1.13
         id: go
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: go/src/github.com/kovansky/dndEncounterCalculator
 
       - name: Get current time
         uses: 1466587594/get-current-time@v2
