@@ -361,6 +361,7 @@ $(document).ready(function() {
                     let partySelect = $("#savedPartySelect")
 
                     // Append a new option to the select
+                    // FixMe: if already exists, DO NOT ADD
                     partySelect.append($("<option>", {
                         value: party.party_id,
                         text: party.party_name

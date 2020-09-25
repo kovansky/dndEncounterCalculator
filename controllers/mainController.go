@@ -82,6 +82,7 @@ func MainWindow(wv webview.WebView) {
 
 		// Add monsters to enemies variable
 		for _, monster := range monsters {
+			// FixMe: delete monsters, that aren't on the list (like in partyController.go)
 			monster.Update()
 			enemies.AddMonster(monster)
 		}
