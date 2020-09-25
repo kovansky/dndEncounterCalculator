@@ -49,12 +49,16 @@ jobs:
 
       - name: Build (Windows)
         id: build-windows
-        run: CC=amd64-w64-mingw64-gcc GOOS=windows GOARCH=amd64 CGO_ENABLED=1 go build
+        run: |
+          cd /home/runner/work/dndEncounterCalculator/dndEncounterCalculator/go/src/github.com/kovansky/dndEncounterCalculator
+          CC=amd64-w64-mingw64-gcc GOOS=windows GOARCH=amd64 CGO_ENABLED=1 go build
         env:
           GOPATH: /home/runner/work/dndEncounterCalculator/dndEncounterCalculator/go
 
       - name: Build (Linux)
         id: build-linux
-        run: GOOS=linux GOARCH=amd64 CGO_ENABLED=1 go build
+        run: |
+          cd /home/runner/work/dndEncounterCalculator/dndEncounterCalculator/go/src/github.com/kovansky/dndEncounterCalculator
+          GOOS=linux GOARCH=amd64 CGO_ENABLED=1 go build
         env:
           GOPATH: /home/runner/work/dndEncounterCalculator/dndEncounterCalculator/go
