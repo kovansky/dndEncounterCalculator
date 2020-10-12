@@ -12,17 +12,17 @@ import (
 //App runs webserver that holds views for application
 func App() {
 	// Create new Mux
-	mux := mux.NewRouter()
+	router := mux.NewRouter()
 	// Register handlers
-	mux.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./webapp/public/")))) // Static resources (images, stylesheets, script files)
+	router.HandleFunc("/party", party)   // Party view
+	router.HandleFunc("/main", main)     // Main view
+	router.HandleFunc("/update", update) // Update view
+	router.HandleFunc("/", party)
 
-	mux.HandleFunc("/", party)
-	mux.HandleFunc("/party", party)   // Party view
-	mux.HandleFunc("/main", main)     // Main view
-	mux.HandleFunc("/update", update) // Update view
+	router.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./webapp/public/")))) // Static resources (images, stylesheets, script files)
 
 	// Run webserver
 	// ToDo: changeable addr
-	err := http.ListenAndServe("127.0.0.1:12354", mux)
+	err := http.ListenAndServe("127.0.0.1:12356", router)
 	misc.Check(err)
 }

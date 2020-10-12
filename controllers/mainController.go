@@ -121,5 +121,5 @@ func MainWindow(wv webview.WebView) {
 	misc.Check(err)
 
 	// Opens Main View in window
-	wv.Navigate("http://127.0.0.1:12354/main")
+	wv.Navigate("http://127.0.0.1:12356/main")
 }
