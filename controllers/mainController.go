@@ -84,7 +84,11 @@ func MainWindow(wv webview.WebView) {
 		for _, monster := range monsters {
 			// FixMe: delete monsters, that aren't on the list (like in partyController.go)
 			monster.Update()
-			enemies.AddMonster(monster)
+
+			if len(monster.MonsterName) != 0 {
+				enemies.RemoveMonster(monster.MonsterName)
+				enemies.AddMonster(monster)
+			} // ToDo: specify if the monster ISN'T counted because of null name
 		}
 
 		modifier = enum.CalculateEncounterModificator(Party.PartyCategory, enemies.GroupModCountType)

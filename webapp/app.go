@@ -4,6 +4,7 @@ Package webapp holds Web Application code - the server listener and routes handl
 package webapp
 
 import (
+	"fmt"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"net/http"
 )
@@ -25,6 +26,8 @@ func App() {
 		Addr:    "127.0.0.1:12354",
 		Handler: mux,
 	}
+
+	fmt.Println(server.Addr)
 
 	// Run webserver
 	err := server.ListenAndServe()
