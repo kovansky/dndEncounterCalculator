@@ -179,7 +179,7 @@ Content (monsters form and results)
 /* Container */
 #monstersForm {
     position: absolute;
-    width:    383px;
+    width:    420px;
     height:   515px;
     left:     0;
     top:      0;
@@ -224,7 +224,6 @@ Content (monsters form and results)
     width:         340px;
     height:        20px;
     left:          10px;
-    top:           44px;
     margin-bottom: 35px;
 
     font-family:   "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
@@ -269,14 +268,19 @@ Content (monsters form and results)
     top:      8px;
 }
 
-/* Fixme: added fields are falling under the button and dale */
+.fields {
+    margin-top: 44px;
+    height:     430px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 
 /* Results block */
 #results {
     position: absolute;
-    width:    537px;
+    width:    500px;
     height:   515px;
-    left:     403px;
+    left:     440px;
     top:      0;
 }
 

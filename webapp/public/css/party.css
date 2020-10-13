@@ -113,11 +113,13 @@ Content (party form)
 }
 
 #content {
-    position: absolute;
-    width:    540px;
-    height:   450px;
-    left:     30px;
-    top:      280px;
+    position:   absolute;
+    width:      540px;
+    height:     400px;
+    left:       30px;
+    top:        280px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* Character input container (template) */
@@ -139,8 +141,6 @@ Content (party form)
     width:      60px;
     text-align: center;
 }
-
-/* Fixme: added fields are falling under the button and dale */
 
 /* Character delete button */
 .charInputContainer .btn.icnBtn {
