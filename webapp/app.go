@@ -5,6 +5,7 @@ package webapp
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/kovansky/dndEncounterCalculator/constants"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"net/http"
 )
@@ -23,6 +24,6 @@ func App() {
 
 	// Run webserver
 	// ToDo: changeable addr
-	err := http.ListenAndServe("127.0.0.1:12356", router)
+	err := http.ListenAndServe(constants.APP_WEBAPP_URL, router)
 	misc.Check(err)
 }

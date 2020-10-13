@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"github.com/kovansky/dndEncounterCalculator/constants"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
 	"github.com/webview/webview"
@@ -246,5 +247,5 @@ func PartyWindow(wv webview.WebView) {
 	misc.Check(err)
 
 	// Opens Party View in window
-	wv.Navigate("http://127.0.0.1:12356/party")
+	wv.Navigate("http://" + constants.APP_WEBAPP_URL + "/party")
 }

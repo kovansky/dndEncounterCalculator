@@ -5,6 +5,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"github.com/kovansky/dndEncounterCalculator/constants"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
 	"github.com/kovansky/dndEncounterCalculator/models/enum"
@@ -124,5 +125,5 @@ func MainWindow(wv webview.WebView) {
 	misc.Check(err)
 
 	// Opens Main View in window
-	wv.Navigate("http://127.0.0.1:12356/main")
+	wv.Navigate("http://" + constants.APP_WEBAPP_URL + "/main")
 }

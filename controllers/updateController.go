@@ -54,7 +54,7 @@ func UpdateWindow(currentVersion models.AppVersionModel, remoteVersion models.Ap
 	misc.Check(err)
 
 	// Opens Update View in window
-	uw.Navigate("http://127.0.0.1:12356/update")
+	uw.Navigate("http://" + constants.APP_WEBAPP_URL + "/update")
 
 	// Runs window code
 	uw.Run()
