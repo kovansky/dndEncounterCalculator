@@ -4,6 +4,7 @@ Package webapp holds Web Application code - the server listener and routes handl
 package webapp
 
 import (
+	"github.com/gorilla/mux"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"net/http"
 )
@@ -11,22 +12,17 @@ import (
 //App runs webserver that holds views for application
 func App() {
 	// Create new Mux
-	mux := http.NewServeMux()
+	router := mux.NewRouter()
 	// Register handlers
-	mux.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./webapp/public/")))) // Static resources (images, stylesheets, script files)
+	router.HandleFunc("/party", party)   // Party view
+	router.HandleFunc("/main", main)     // Main view
+	router.HandleFunc("/update", update) // Update view
+	router.HandleFunc("/", party)
 
-	mux.HandleFunc("/party", party)   // Party view
-	mux.HandleFunc("/main", main)     // Main view
-	mux.HandleFunc("/update", update) // Update view
-
-	// Create server configuration
-	server := &http.Server{
-		// ToDo: configurable port, saved as const
-		Addr:    "127.0.0.1:12354",
-		Handler: mux,
-	}
+	router.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./webapp/public/")))) // Static resources (images, stylesheets, script files)
 
 	// Run webserver
-	err := server.ListenAndServe()
+	// ToDo: changeable addr
+	err := http.ListenAndServe("127.0.0.1:12356", router)
 	misc.Check(err)
 }

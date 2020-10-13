@@ -33,7 +33,7 @@ $(document).ready(function() {
                 domElement.find(".charLevel").val(el.player_level)
 
                 // ...then clone another input template, if necessary
-                if(index !== jsonData.length - 1) {
+                if(index !== jsonData.party.length - 1) {
                     cloneTemplate("#charInputTmpl", "#content")
                 }
             })
@@ -361,6 +361,7 @@ $(document).ready(function() {
                     let partySelect = $("#savedPartySelect")
 
                     // Append a new option to the select
+                    // FixMe: if already exists, DO NOT ADD
                     partySelect.append($("<option>", {
                         value: party.party_id,
                         text: party.party_name

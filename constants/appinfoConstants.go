@@ -10,7 +10,7 @@ This file creates and sets values of application information constants, like app
 const (
 	// WebApp data
 
-	APP_WEBAPP_PORT = 12354
+	APP_WEBAPP_PORT = 12356
 	APP_WEBAPP_HOST = "127.0.0.1"
 	APP_WEBAPP_URL  = APP_WEBAPP_HOST + ":" + string(rune(APP_WEBAPP_PORT))
 
