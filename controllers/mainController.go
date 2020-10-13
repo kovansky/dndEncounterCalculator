@@ -5,7 +5,6 @@ package controllers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
 	"github.com/kovansky/dndEncounterCalculator/models/enum"
@@ -57,6 +56,7 @@ func MainWindow(wv webview.WebView) {
 
 	// Calculates encounter difficulty and XP values
 	err = wv.Bind("calculateResults", func(monstersString json.RawMessage) string {
+		// Reset enemies list
 		enemies = models.NewEnemiesModel()
 
 		var (
@@ -81,20 +81,23 @@ func MainWindow(wv webview.WebView) {
 
 		// Add monsters to enemies variable
 		for _, monster := range monsters {
-			// FixMe: delete monsters, that aren't on the list (like in partyController.go)
 			monster.Update()
+
+			// If monster name is null, skip it
 			if len(monster.MonsterName) == 0 {
-				fmt.Println(monster)
 				continue
 			}
 
+			// Add monster to struct
 			enemies.AddMonster(monster)
 		}
 
+		// Calculate things
 		modifier = enum.CalculateEncounterModificator(Party.PartyCategory, enemies.GroupModCountType)
 		adjustedXP = float32(enemies.GroupXP) * float32(modifier)
 		difficulty = enum.CalculateEncounterDifficulty(Party.PartyThresholds, adjustedXP)
 
+		// Pack everything to results model
 		results = models.ResultsModel{
 			MonstersAmount:      enemies.GroupSize,
 			MonstersGroupType:   enum.GroupTypeName(enemies.GroupType),

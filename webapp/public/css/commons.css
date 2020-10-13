@@ -85,6 +85,12 @@ Inputs
     font-size:     18px;
     line-height:   24px;
     color:         #5F5F5F;
+
+    transition:    box-shadow .5s;
+}
+
+.input.error {
+    box-shadow: 2px 4px 6px rgba(255, 0, 0, .25) !important;
 }
 
 ::placeholder, :-ms-input-placeholder, ::-ms-input-placeholder {
@@ -146,7 +152,7 @@ Lock, used to lock the view, when dialog is open
     top:              0;
     left:             0;
 
-    display: none;
+    display:          none;
     width:            100vw;
     height:           100vh;
     background-color: rgba(0, 0, 0, .2);
@@ -155,5 +161,5 @@ Lock, used to lock the view, when dialog is open
 }
 
 #lock.lockVisible {
-    display:          block;
+    display: block;
 }

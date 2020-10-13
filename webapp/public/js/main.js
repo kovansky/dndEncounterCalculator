@@ -116,6 +116,13 @@ function monstersUpdated() {
         monster.monster_cr = parseFloat($(this).children(".monsterCR").val())
         monster.count_in_cr_mod = $(this).children(".monsterDifficult").is(":checked")
 
+        // Check, if monster name is empty
+        if(monster.monster_name.length === 0) {
+            $(this).children(".monsterName").addClass("error")
+        } else {
+            $(this).children(".monsterName").removeClass("error")
+        }
+
         // Add monster object to array
         monsters.push(monster)
     })
