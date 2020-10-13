@@ -1,0 +1,175 @@
+/*
+ * Copyright (c) 2020 by F4 Developer (Stanisław Kowański). This file is part of
+ * dndEncounterCalculator project and is released under MIT License. For full license
+ * details, search for LICENSE file in root project directory.
+ */
+
+/*
+ * This file contains global style rules, applied to all views
+ */
+
+/*
+Buttons
+*/
+/* Classic button */
+.btn {
+    background:    #C4C4C4;
+    border-radius: 7px;
+    transition:    color 1s, background-color 1s;
+}
+
+.btn.icnBtn {
+    width:         30px;
+    height:        30px;
+    position:      absolute;
+    border-radius: 100px;
+}
+
+.btn:hover {
+    cursor:     pointer;
+    background: #A4A4A4;
+}
+
+.btnText {
+    position:    absolute;
+    top:         6px;
+    right:       20px;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: 300;
+    font-size:   18px;
+    line-height: 24px;
+    text-align:  center;
+}
+
+.btnIcon {
+    position: absolute;
+    top:      8px;
+    left:     10px;
+    width:    20px;
+    height:   20px;
+}
+
+/* Small button */
+.btn.small .btnText {
+    font-size:   14px;
+    line-height: 18px;
+    right:       10px;
+    top:         4px;
+}
+
+.btn.small .btnIcon {
+    width:  17px;
+    height: 17px;
+    top:    5px;
+}
+
+/* Icon button (without text) */
+.btn.icnBtn .btnIcon {
+    width:  18px;
+    height: 18px;
+    top:    6px;
+    left:   6px;
+}
+
+/*
+Inputs
+*/
+/* Classic inputs */
+.input {
+    background:    #E3E3E3;
+    border:        none;
+    border-radius: 6px;
+    box-shadow:    2px 4px 6px rgba(0, 0, 0, .25);
+    height:        30px;
+    padding:       0 8px;
+
+    font-family:   "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:    normal;
+    font-weight:   300;
+    font-size:     18px;
+    line-height:   24px;
+    color:         #5F5F5F;
+
+    transition:    box-shadow .5s;
+}
+
+.input.error {
+    box-shadow: 2px 4px 6px rgba(255, 0, 0, .25) !important;
+}
+
+::placeholder, :-ms-input-placeholder, ::-ms-input-placeholder {
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: 300;
+    font-size:   18px;
+    line-height: 24px;
+
+    color:       #5F5F5F;
+    opacity:     1;
+}
+
+.input.checkInput {
+    -moz-appearance:    none;
+    -webkit-appearance: none;
+    appearance:         none;
+    width:              20px;
+    height:             20px;
+    margin-bottom:      -3px;
+    cursor:             pointer;
+}
+
+.input.checkInput:checked {
+    background:      #E3E3E3 url("../icons/checkIcon.svg") no-repeat center;
+    background-size: 10px 10px;
+}
+
+/* Small inputs */
+.input.small {
+    font-size:   12px;
+    line-height: 16px;
+}
+
+.input.small ::placeholder, .input.small :-ms-input-placeholder, .input.small ::-ms-input-placeholder {
+    font-size:   12px;
+    line-height: 16px;
+}
+
+/*
+Bolded data values
+*/
+.dataBold {
+    font-weight: bold;
+}
+
+/*
+Templates section
+*/
+#templates {
+    display: none;
+}
+
+/*
+Lock, used to lock the view, when dialog is open
+*/
+#lock {
+    position:         absolute;
+    top:              0;
+    left:             0;
+
+    display:          none;
+    width:            100vw;
+    height:           100vh;
+    background-color: rgba(0, 0, 0, .2);
+
+    overflow-x:       hidden;
+}
+
+#lock.lockVisible {
+    display: block;
+}
+
+.tooltipped {
+    border-bottom: 1px dotted;
+}

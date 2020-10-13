@@ -1,0 +1,238 @@
+/*
+ * Copyright (c) 2020 by F4 Developer (Stanisław Kowański). This file is part of
+ * dndEncounterCalculator project and is released under MIT License. For full license
+ * details, search for LICENSE file in root project directory.
+ */
+
+/*
+ * This file contains styles for Party View
+ */
+
+@import "fonts.css";
+@import "commons.css";
+
+/* Window */
+html, body {
+    width:    600px;
+    height:   750px;
+
+    overflow: hidden;
+}
+
+#partyCreator {
+    position:   relative;
+    width:      600px;
+    height:     550px;
+
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+
+/*
+Header (party saver, selector)
+*/
+#header {
+    position:      absolute;
+    width:         540px;
+    height:        200px;
+    left:          30px;
+    top:           10px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+/* Windows title */
+.winTitle {
+    position:    absolute;
+    width:       413px;
+    height:      42px;
+    left:        64px;
+    top:         0;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: normal;
+    font-size:   32px;
+    line-height: 42px;
+    text-align:  center;
+
+    color:       #000000;
+}
+
+/* Saved party selector (<select>) */
+.savedParty {
+    position: absolute;
+    width:    200px;
+    height:   32px;
+    top:      50px;
+    left:     135px;
+}
+
+/* Save party button */
+.saveParty {
+    position: absolute;
+    width:    150px;
+    height:   35px;
+    left:     195px;
+    top:      140px;
+}
+
+/* Delete party button */
+.partyDelete {
+    position: absolute;
+    width:    40px !important;
+    height:   40px !important;
+    left:     365px;
+    top:      45px;
+}
+
+.partyDelete .btnIcon {
+    width:  20px !important;
+    height: 20px !important;
+    top:    10px !important;
+    left:   10px !important;
+}
+
+/* Party name input */
+.partyName {
+    position: absolute;
+    width:    270px;
+    height:   32px;
+    left:     135px;
+    top:      95px;
+}
+
+/*
+Content (party form)
+*/
+/* Add char button */
+.charNew {
+    position: absolute;
+    width:    250px;
+    height:   35px;
+    left:     175px;
+    top:      230px;
+}
+
+.charNew .btnText {
+    width: 179px;
+}
+
+#content {
+    position:   absolute;
+    width:      540px;
+    height:     400px;
+    left:       30px;
+    top:        280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Character input container (template) */
+.charInputContainer {
+    position: relative;
+    width:    425px;
+    height:   50px;
+    margin:   0 auto;
+}
+
+/* Character name input */
+.charName {
+    width:        254px;
+    margin-right: 22px;
+}
+
+/* Character level input */
+.charLevel {
+    width:      60px;
+    text-align: center;
+}
+
+/* Character delete button */
+.charInputContainer .btn.icnBtn {
+    right: 0;
+    top:   1px;
+}
+
+/*
+Footer
+*/
+#footer {
+    position: absolute;
+    width:    540px;
+    height:   50px;
+    top:      700px;
+    left:     30px;
+}
+
+/* Confirmation (next window) button */
+.nextStep {
+    position: absolute;
+    width:    150px;
+    height:   35px;
+    left:     195px;
+    top:      7px;
+}
+
+.nextStep .btnText {
+    width: 90px;
+}
+
+/* Lock for confirmation of party delete */
+#partyDeleteConfirmation {
+    position:         absolute;
+    top:              0;
+    left:             0;
+
+    display:          none;
+    width:            100vw;
+    height:           100vh;
+    background-color: rgba(256, 256, 256, .6);
+
+    overflow-x:       hidden;
+}
+
+#partyDeleteConfirmation.visible {
+    display: block;
+}
+
+/* Confirmation dialog (div) itself */
+#confirmationDialog {
+    position: absolute;
+    width:    400px;
+    height:   150px;
+    left:     100px;
+    top:      300px;
+}
+
+/* Confirmation dialog title (text) */
+#confirmationDialog .winTitle {
+    position:    absolute;
+    max-width:   212px;
+    height:      73px;
+    left:        94px;
+    top:         20px;
+
+    font-family: "Roboto Slab", "Roboto Light", "Droid Sans", sans-serif;
+    font-style:  normal;
+    font-weight: 300;
+    font-size:   18px;
+    line-height: 24px;
+
+    color:       #000000;
+}
+
+/* Confirmation dialog controls (accept/decline buttons) */
+.partyDeleteConfirm {
+    position:         absolute;
+    left:             125px;
+    top:              105px;
+    background-color: #00AD11;
+}
+
+.partyDeleteDecline {
+    position:         absolute;
+    left:             245px;
+    top:              105px;
+    background-color: #FF0000;
+}

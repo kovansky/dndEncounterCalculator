@@ -1,0 +1,30 @@
+/*
+ * Copyright (c) 2020 by F4 Developer (Stanisław Kowański). This file is part of
+ * dndEncounterCalculator project and is released under MIT License. For full license
+ * details, search for LICENSE file in root project directory.
+ */
+
+/*
+ * This file registers custom used fonts
+ */
+
+@font-face {
+    font-family: "Roboto Slab";
+    src: url("../fonts/RobotoSlab-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto Slab";
+    src: url("../fonts/RobotoSlab-Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto Slab";
+    src: url("../fonts/RobotoSlab-Light.ttf");
+    font-weight: 300;
+    font-style: normal;
+}
