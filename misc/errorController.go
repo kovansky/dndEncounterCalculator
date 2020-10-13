@@ -1,7 +1,14 @@
+/*
+ * Copyright (c) 2020 by F4 Developer (Stanisław Kowański). This file is part of
+ * dndEncounterCalculator project and is released under MIT License. For full license
+ * details, search for LICENSE file in root project directory.
+ */
+
 package misc
 
 import (
 	"fmt"
+	"github.com/kovansky/dndEncounterCalculator/constants"
 	"github.com/kovansky/dndEncounterCalculator/models"
 	"github.com/webview/webview"
 )
@@ -181,7 +188,7 @@ func ErrorWindow(ch chan int, model models.ErrorModel) {
         retValue(1)
     })
 </script>
-</html>`, "http://127.0.0.1:12356", model.ErrorNumber, model.ErrorDescription, "http://127.0.0.1:12356"))
+</html>`, "http://"+constants.APP_WEBAPP_URL, model.ErrorNumber, model.ErrorDescription, "http://"+constants.APP_WEBAPP_URL))
 
 	// Runs window code
 	ew.Run()

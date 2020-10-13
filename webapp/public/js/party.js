@@ -1,4 +1,10 @@
 /*
+ * Copyright (c) 2020 by F4 Developer (Stanisław Kowański). This file is part of
+ * dndEncounterCalculator project and is released under MIT License. For full license
+ * details, search for LICENSE file in root project directory.
+ */
+
+/*
  * This is script file (local controller) for Party View
  */
 
@@ -361,11 +367,12 @@ $(document).ready(function() {
                     let partySelect = $("#savedPartySelect")
 
                     // Append a new option to the select
-                    // FixMe: if already exists, DO NOT ADD
-                    partySelect.append($("<option>", {
-                        value: party.party_id,
-                        text: party.party_name
-                    }))
+                    if(partySelect.find('option[value=' + party.party_id +']').length === 0) {
+                        partySelect.append($("<option>", {
+                            value: party.party_id,
+                            text: party.party_name
+                        }))
+                    }
                 }
             })
         }

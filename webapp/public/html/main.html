@@ -90,8 +90,9 @@
             with CR
             <input type="number" name="monsterCR" class="input small numInput monsterCR" placeholder="1" value="1">
             <br>
-            <label for="monsterDifficultField">and count them as difficult?</label>
-            <!-- ToDo: add explaination in tooltip -->
+            <label for="monsterDifficultField" title="Sometimes creatures with lower CR may unduly overstate the encounter difficulty, for example when you add two CR 1 minions to CR 8 creature.
+They probably doesn't have so big impact on the difficulty, but still will change the score from, for example medium to deadly (modifier changes from *1 to *2).
+You may exclude such creatures from counter by unchecking this box." class="tooltipped">and count them as difficult?</label>
             <input type="checkbox" name="monsterDifficult" id="monsterDifficultField" class="input small checkInput monsterDifficult"
                    checked>
             <span class="btn icnBtn monsterDelete">

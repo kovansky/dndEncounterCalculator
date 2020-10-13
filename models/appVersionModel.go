@@ -1,4 +1,10 @@
 /*
+ * Copyright (c) 2020 by F4 Developer (Stanisław Kowański). This file is part of
+ * dndEncounterCalculator project and is released under MIT License. For full license
+ * details, search for LICENSE file in root project directory.
+ */
+
+/*
 Package models implements application data models, used to communicate with JavaScript, hold data and write it to the disk.
 */
 package models
@@ -103,4 +109,8 @@ func (avm *AppVersionModel) CheckForUpdates() (bool, int, int, int, enum.Version
 //String returns version string ("MAJOR.MINOR.PATCH-CHANNEL")
 func (avm AppVersionModel) String() string {
 	return fmt.Sprintf("%d.%d.%d-%s", avm.Major, avm.Minor, avm.Patch, avm.Channel)
+}
+
+func (avm AppVersionModel) StringNoChannel() string {
+	return fmt.Sprintf("%d.%d.%d", avm.Major, avm.Minor, avm.Patch)
 }

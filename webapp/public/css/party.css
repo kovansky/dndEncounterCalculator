@@ -1,4 +1,10 @@
 /*
+ * Copyright (c) 2020 by F4 Developer (Stanisław Kowański). This file is part of
+ * dndEncounterCalculator project and is released under MIT License. For full license
+ * details, search for LICENSE file in root project directory.
+ */
+
+/*
  * This file contains styles for Party View
  */
 
@@ -105,7 +111,7 @@ Content (party form)
     width:    250px;
     height:   35px;
     left:     175px;
-    top:      240px;
+    top:      230px;
 }
 
 .charNew .btnText {
@@ -113,11 +119,13 @@ Content (party form)
 }
 
 #content {
-    position: absolute;
-    width:    540px;
-    height:   450px;
-    left:     30px;
-    top:      280px;
+    position:   absolute;
+    width:      540px;
+    height:     400px;
+    left:       30px;
+    top:        280px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* Character input container (template) */
@@ -139,8 +147,6 @@ Content (party form)
     width:      60px;
     text-align: center;
 }
-
-/* Fixme: added fields are falling under the button and dale */
 
 /* Character delete button */
 .charInputContainer .btn.icnBtn {

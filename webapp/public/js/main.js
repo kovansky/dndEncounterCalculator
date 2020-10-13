@@ -1,4 +1,10 @@
 /*
+ * Copyright (c) 2020 by F4 Developer (Stanisław Kowański). This file is part of
+ * dndEncounterCalculator project and is released under MIT License. For full license
+ * details, search for LICENSE file in root project directory.
+ */
+
+/*
  * This is script file (local controller) for Main View
  */
 
@@ -116,6 +122,13 @@ function monstersUpdated() {
         monster.monster_cr = parseFloat($(this).children(".monsterCR").val())
         monster.count_in_cr_mod = $(this).children(".monsterDifficult").is(":checked")
 
+        // Check, if monster name is empty
+        if(monster.monster_name.length === 0) {
+            $(this).children(".monsterName").addClass("error")
+        } else {
+            $(this).children(".monsterName").removeClass("error")
+        }
+
         // Add monster object to array
         monsters.push(monster)
     })
@@ -126,38 +139,42 @@ function monstersUpdated() {
         // Parse string into js object
         let jsonData = JSON.parse(ret)
 
-        // Show results block in view
-        $("#results").removeClass("empty")
+        if(jsonData.monsters_group_type === "error") {
+            $("#results").addClass("empty")
+        } else {
+            // Show results block in view
+            $("#results").removeClass("empty")
 
-        // Iterate through .dataSync objects in DOM to fill them with values
-        $(".dataSync[data-cat=\"results\"]").each(function() {
-            // Get the object field (requested data)
-            let field = $(this).data("field")
+            // Iterate through .dataSync objects in DOM to fill them with values
+            $(".dataSync[data-cat=\"results\"]").each(function() {
+                // Get the object field (requested data)
+                let field = $(this).data("field")
 
-            // If requested field contains dot (has more than one level), split it
-            if(field.includes(".")) {
-                let arr = field.split("."),
-                    actualField = jsonData
+                // If requested field contains dot (has more than one level), split it
+                if(field.includes(".")) {
+                    let arr = field.split("."),
+                        actualField = jsonData
 
-                for(let i = 0; i < arr.length; i++) {
-                    actualField = actualField[arr[i]]
+                    for(let i = 0; i < arr.length; i++) {
+                        actualField = actualField[arr[i]]
+                    }
+
+                    // Set object html to the requested field value
+                    $(this).html(actualField)
+                } else {
+                    // Set object html to the requested field value
+                    $(this).html(jsonData[field])
                 }
+            })
 
-                // Set object html to the requested field value
-                $(this).html(actualField)
-            } else {
-                // Set object html to the requested field value
-                $(this).html(jsonData[field])
-            }
-        })
-
-        // Set the final difficulty class (color)
-        $(".encounterDifficultyResult")
-            .removeClass("trivial")
-            .removeClass("easy")
-            .removeClass("medium")
-            .removeClass("hard")
-            .removeClass("deadly")
-            .addClass(jsonData.encounter_difficulty)
+            // Set the final difficulty class (color)
+            $(".encounterDifficultyResult")
+                .removeClass("trivial")
+                .removeClass("easy")
+                .removeClass("medium")
+                .removeClass("hard")
+                .removeClass("deadly")
+                .addClass(jsonData.encounter_difficulty)
+        }
     })
 }

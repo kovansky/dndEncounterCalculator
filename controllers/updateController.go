@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020 by F4 Developer (Stanisław Kowański). This file is part of
+ * dndEncounterCalculator project and is released under MIT License. For full license
+ * details, search for LICENSE file in root project directory.
+ */
+
 package controllers
 
 import (
@@ -41,7 +47,7 @@ func UpdateWindow(currentVersion models.AppVersionModel, remoteVersion models.Ap
 	err = uw.Bind("retValue", func(code int) int {
 		// If "yes" ("download update") button clicked, open update URL in browser
 		if code == 1 {
-			url := fmt.Sprintf(constants.APP_UPDATE_URL, remoteVersion.String())
+			url := fmt.Sprintf(constants.APP_UPDATE_URL, remoteVersion.StringNoChannel())
 
 			browser.OpenURL(url)
 		}
@@ -54,7 +60,7 @@ func UpdateWindow(currentVersion models.AppVersionModel, remoteVersion models.Ap
 	misc.Check(err)
 
 	// Opens Update View in window
-	uw.Navigate("http://127.0.0.1:12356/update")
+	uw.Navigate("http://" + constants.APP_WEBAPP_URL + "/update")
 
 	// Runs window code
 	uw.Run()
