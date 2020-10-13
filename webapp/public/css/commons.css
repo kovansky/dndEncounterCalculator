@@ -163,3 +163,7 @@ Lock, used to lock the view, when dialog is open
 #lock.lockVisible {
     display: block;
 }
+
+.tooltipped {
+    border-bottom: 1px dotted;
+}
