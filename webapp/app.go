@@ -23,7 +23,6 @@ func App() {
 	router.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./webapp/public/")))) // Static resources (images, stylesheets, script files)
 
 	// Run webserver
-	// ToDo: changeable addr
 	err := http.ListenAndServe(constants.APP_WEBAPP_URL, router)
 	misc.Check(err)
 }
