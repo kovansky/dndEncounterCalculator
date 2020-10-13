@@ -1,4 +1,10 @@
 /*
+ * Copyright (c) 2020 by F4 Developer (Stanisław Kowański). This file is part of
+ * dndEncounterCalculator project and is released under MIT License. For full license
+ * details, search for LICENSE file in root project directory.
+ */
+
+/*
 Package misc holds smaller, one-file parts of program
 */
 package misc
