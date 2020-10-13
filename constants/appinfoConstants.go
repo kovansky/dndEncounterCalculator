@@ -24,7 +24,7 @@ const (
 
 	APP_VERSION_CHECK_URL_BETA   = "https://github.com/kovansky/dndEncounterCalculator/raw/develop/versioning/latest-beta.txt"
 	APP_VERSION_CHECK_URL_STABLE = "https://github.com/kovansky/dndEncounterCalculator/raw/develop/versioning/latest-stable.txt"
-	APP_VERSION_CURRENT          = "0.1.0-DEV"
+	APP_VERSION_CURRENT          = "1.0.0-STABLE"
 	APP_VERSION_CODENAME         = "YMIR"
 	APP_UPDATE_URL               = "https://github.com/kovansky/dndEncounterCalculator/releases/tag/v%s"
 

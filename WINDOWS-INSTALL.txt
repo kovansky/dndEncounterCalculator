@@ -1,0 +1,11 @@
+# Installation
+
+Download the .zip file attached to latest release. You will find three files there - the .exe application and two .dll libraries, required for app to work.
+
+Extract all the three files into the same folder, and run the .exe. It should work!
+
+You may also move the .dll files into **C:\Windows\System32** directory (administrative privileges required). Then you will be able to run the .exe from anywhere on the computer (required .dlls are loaded from PATH variable).
+
+# Follow and share the project!
+
+GitHub repository: https://github.com/kovansky/dndEncounterCalculator

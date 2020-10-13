@@ -110,3 +110,7 @@ func (avm *AppVersionModel) CheckForUpdates() (bool, int, int, int, enum.Version
 func (avm AppVersionModel) String() string {
 	return fmt.Sprintf("%d.%d.%d-%s", avm.Major, avm.Minor, avm.Patch, avm.Channel)
 }
+
+func (avm AppVersionModel) StringNoChannel() string {
+	return fmt.Sprintf("%d.%d.%d", avm.Major, avm.Minor, avm.Patch)
+}
