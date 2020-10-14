@@ -11,6 +11,7 @@ import (
 	"github.com/kovansky/dndEncounterCalculator/constants"
 	"github.com/kovansky/dndEncounterCalculator/models"
 	"github.com/webview/webview"
+	"strconv"
 )
 
 //ErrorWindow is a controller function of Error View (dialog). It creates a WebView window
@@ -32,6 +33,9 @@ func ErrorWindow(ch chan int, model models.ErrorModel) {
 		return code
 	})
 	Check(err)
+
+	// Log to console
+	fmt.Println("Error: #" + strconv.Itoa(model.ErrorNumber) + "; " + model.ErrorDescription)
 
 	// Opens Error View in window
 	ew.Navigate("data:text/html," + fmt.Sprintf(`<!doctype html>
