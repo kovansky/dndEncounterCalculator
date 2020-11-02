@@ -16,7 +16,7 @@ This file creates and sets values of application information constants, like app
 const (
 	// WebApp data
 
-	APP_WEBAPP_PORT = "12356"
+	APP_WEBAPP_PORT = "12348"
 	APP_WEBAPP_HOST = "127.0.0.1"
 	APP_WEBAPP_URL  = APP_WEBAPP_HOST + ":" + APP_WEBAPP_PORT
 
@@ -24,7 +24,7 @@ const (
 
 	APP_VERSION_CHECK_URL_BETA   = "https://github.com/kovansky/dndEncounterCalculator/raw/develop/versioning/latest-beta.txt"
 	APP_VERSION_CHECK_URL_STABLE = "https://github.com/kovansky/dndEncounterCalculator/raw/develop/versioning/latest-stable.txt"
-	APP_VERSION_CURRENT          = "1.0.0-STABLE"
+	APP_VERSION_CURRENT          = "1.0.2-STABLE"
 	APP_VERSION_CODENAME         = "YMIR"
 	APP_UPDATE_URL               = "https://github.com/kovansky/dndEncounterCalculator/releases/tag/v%s"
 
