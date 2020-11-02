@@ -131,5 +131,5 @@ func MainWindow(wv webview.WebView) {
 	misc.Check(err)
 
 	// Opens Main View in window
-	wv.Navigate("http://" + constants.APP_WEBAPP_URL + "/main")
+	wv.Navigate("http://" + constants.APP_WEBAPP_URL + "/public/html/main.html")
 }
