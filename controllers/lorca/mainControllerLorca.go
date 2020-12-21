@@ -4,10 +4,7 @@
  * details, search for LICENSE file in root project directory.
  */
 
-/*
-Package controllers implements Controllers of application Views, their logic and communication between them and Views.
-*/
-package controllers
+package lorca
 
 import (
 	"encoding/json"
@@ -15,44 +12,49 @@ import (
 	"github.com/kovansky/dndEncounterCalculator/controllers/functions"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
-	"github.com/webview/webview"
 )
+import "github.com/zserge/lorca"
 
 //enemies is a variable that holds all monsters added in the monsters form in the Main View.
 var enemies *models.EnemiesModel
 
-//MainWindow is a controller function of Main View. It loads a view into existing WebView window
-func MainWindow(wv webview.WebView) {
-	// Adjust window data to view
-	wv.SetTitle("D&D Encounter Calculator") // language
-	wv.SetSize(1000, 675, webview.HintFixed)
+//LMainWindow is a controller function of Main View, but for Lorca instead of WebView. It loads a view into existing WebView window
+func LMainWindow(ui lorca.UI) {
+	currBounds, _ := ui.Bounds()
+	err := ui.SetBounds(lorca.Bounds{
+		Left:        currBounds.Left,
+		Top:         currBounds.Top,
+		Width:       1000,
+		Height:      725,
+		WindowState: "normal",
+	})
+	misc.Check(err)
 
 	// On view open loads previous state (monsters list), if existed.
-	err := wv.Bind("loadWindowState", func() string {
+	err = ui.Bind("loadWindowState", func() string {
 		return functions.LoadMainState(enemies)
 	})
 	misc.Check(err)
 
 	// Returns Party data as json
-	err = wv.Bind("getPartyData", func() string {
+	err = ui.Bind("getPartyData", func() string {
 		return functions.GetPartyData(Party)
 	})
 	misc.Check(err)
 
 	// Calculates encounter difficulty and XP values
-	err = wv.Bind("calculateResults", func(monstersString json.RawMessage) string {
+	err = ui.Bind("calculateResults", func(monstersString json.RawMessage) string {
 		return functions.CalculateResults(monstersString, enemies, Party)
 	})
 	misc.Check(err)
 
 	// Navigates window to Party View
-	err = wv.Bind("editParty", func() bool {
-		PartyWindow(wv)
+	err = ui.Bind("editParty", func() bool {
+		LPartyWindow(ui)
 
 		return true
 	})
 	misc.Check(err)
 
-	// Opens Main View in window
-	wv.Navigate("http://" + constants.APP_WEBAPP_URL + "/public/html/main.html")
+	ui.Load("http://" + constants.APP_WEBAPP_URL + "/public/html/main.html")
 }

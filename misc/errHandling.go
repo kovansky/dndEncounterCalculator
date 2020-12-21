@@ -43,8 +43,14 @@ func ThrowError(modelString json.RawMessage) int {
 func ThrowErrorGo(model models.ErrorModel) int {
 	// Create channel, that reads dialog output
 	ch := make(chan int)
-	// Open dialog
-	go ErrorWindow(ch, model)
+
+	if EdgeDetector() {
+		// Open dialog (webview)
+		go ErrorWindow(ch, model)
+	} else {
+		// Open dialog (lorca)
+		go LErrorWindow(ch, model)
+	}
 
 	// Return dialog output
 	return <-ch

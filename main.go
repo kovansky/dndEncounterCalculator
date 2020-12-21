@@ -11,14 +11,18 @@ package main
 
 import (
 	"github.com/kovansky/dndEncounterCalculator/controllers"
+	lcontrollers "github.com/kovansky/dndEncounterCalculator/controllers/lorca"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
 	"github.com/kovansky/dndEncounterCalculator/webapp"
 	"github.com/webview/webview"
+	"github.com/zserge/lorca"
 )
 
 //main is the heart of application, the runner of the rest of the program
 func main() {
+	edgeExists := misc.EdgeDetector()
+
 	// Run webapp in separate goroutine
 	go webapp.App()
 	// Check for updates in separate goroutine
@@ -37,21 +41,41 @@ func main() {
 
 		// If update avaliable, open Update Dialog
 		if isUpdate {
-			controllers.UpdateWindow(*appVersion, remoteAvm)
+			if edgeExists {
+				controllers.UpdateWindow(*appVersion, remoteAvm)
+			} else {
+				lcontrollers.LUpdateWindow(*appVersion, remoteAvm)
+			}
 		}
 	}()
 
-	// Create new webview instance and defer destroying it
-	wv := webview.New(true)
-	defer wv.Destroy()
+	if edgeExists {
+		// Create new webview instance and defer destroying it
+		wv := webview.New(true)
+		defer wv.Destroy()
 
-	// Bind runError function for JS to be avaliable in all views using this webview instance
-	err := wv.Bind("runError", misc.ThrowError)
-	misc.Check(err)
+		// Bind runError function for JS to be avaliable in all views using this webview instance
+		err := wv.Bind("runError", misc.ThrowError)
+		misc.Check(err)
 
-	// Run first window - party window
-	controllers.PartyWindow(wv)
+		// Run first window - party window
+		controllers.PartyWindow(wv)
 
-	// Runs window code
-	wv.Run()
+		// Runs window code
+		wv.Run()
+	} else {
+		// Create lorca instance and defer closing it
+		ui, _ := lorca.New("", "", 100, 100)
+		defer ui.Close()
+
+		// Bind runError function for JS to be avaliable in all views using this lorca instance
+		err := ui.Bind("runError", misc.ThrowError)
+		misc.Check(err)
+
+		// Run first window
+		lcontrollers.LPartyWindow(ui)
+
+		// Wait until done
+		<-ui.Done()
+	}
 }
