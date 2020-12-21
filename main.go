@@ -15,6 +15,7 @@ import (
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
 	"github.com/kovansky/dndEncounterCalculator/webapp"
+	"github.com/webview/webview"
 	"github.com/zserge/lorca"
 )
 
@@ -48,33 +49,33 @@ func main() {
 		}
 	}()
 
-	//if edgeExists {
-	//	// Create new webview instance and defer destroying it
-	//	wv := webview.New(true)
-	//	defer wv.Destroy()
-	//
-	//	// Bind runError function for JS to be avaliable in all views using this webview instance
-	//	err := wv.Bind("runError", misc.ThrowError)
-	//	misc.Check(err)
-	//
-	//	// Run first window - party window
-	//	controllers.PartyWindow(wv)
-	//
-	//	// Runs window code
-	//	wv.Run()
-	//} else {
-	// Create lorca instance and defer closing it
-	ui, _ := lorca.New("", "", 100, 100)
-	defer ui.Close()
+	if edgeExists {
+		// Create new webview instance and defer destroying it
+		wv := webview.New(true)
+		defer wv.Destroy()
 
-	// Bind runError function for JS to be avaliable in all views using this lorca instance
-	err := ui.Bind("runError", misc.ThrowError)
-	misc.Check(err)
+		// Bind runError function for JS to be avaliable in all views using this webview instance
+		err := wv.Bind("runError", misc.ThrowError)
+		misc.Check(err)
 
-	// Run first window
-	lcontrollers.LPartyWindow(ui)
+		// Run first window - party window
+		controllers.PartyWindow(wv)
 
-	// Wait until done
-	<-ui.Done()
-	//}
+		// Runs window code
+		wv.Run()
+	} else {
+		// Create lorca instance and defer closing it
+		ui, _ := lorca.New("", "", 100, 100)
+		defer ui.Close()
+
+		// Bind runError function for JS to be avaliable in all views using this lorca instance
+		err := ui.Bind("runError", misc.ThrowError)
+		misc.Check(err)
+
+		// Run first window
+		lcontrollers.LPartyWindow(ui)
+
+		// Wait until done
+		<-ui.Done()
+	}
 }
