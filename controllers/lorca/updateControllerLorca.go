@@ -4,7 +4,7 @@
  * details, search for LICENSE file in root project directory.
  */
 
-package controllers
+package lorca
 
 import (
 	"fmt"
@@ -13,27 +13,22 @@ import (
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
 	"github.com/pkg/browser"
-	"github.com/webview/webview"
+	"github.com/zserge/lorca"
 )
 
-//UpdateWindow is a controller function of Update View (dialog). It creates a WebView window
-func UpdateWindow(currentVersion models.AppVersionModel, remoteVersion models.AppVersionModel) {
-	// Create webview window, and defer destroying it
-	uw := webview.New(false)
-	defer uw.Destroy()
-
-	// Adjust window data to view
-	uw.SetTitle("Update avaliable!") // language
-	uw.SetSize(600, 200, webview.HintFixed)
+//LUpdateWindow is a controller function of Update View (dialog), but for Lorca instead of WebView. It creates a Lorca window
+func LUpdateWindow(currentVersion models.AppVersionModel, remoteVersion models.AppVersionModel) {
+	ui, _ := lorca.New("", "", 600, 250)
+	defer ui.Close()
 
 	// On view open passes data from backend to view
-	err := uw.Bind("loadWindowState", func() string {
+	err := ui.Bind("loadWindowState", func() string {
 		return functions.LoadUpdateState(currentVersion, remoteVersion)
 	})
 	misc.Check(err)
 
 	// Dialog controls (buttons) logic
-	err = uw.Bind("retValue", func(code int) int {
+	err = ui.Bind("retValue", func(code int) int {
 		// If "yes" ("download update") button clicked, open update URL in browser
 		if code == 1 {
 			url := fmt.Sprintf(constants.APP_UPDATE_URL, remoteVersion.StringNoChannel())
@@ -42,15 +37,15 @@ func UpdateWindow(currentVersion models.AppVersionModel, remoteVersion models.Ap
 		}
 
 		// Close dialog window, regardless of button clicked
-		uw.Terminate()
+		ui.Close()
 
 		return code
 	})
 	misc.Check(err)
 
 	// Opens Update View in window
-	uw.Navigate("http://" + constants.APP_WEBAPP_URL + "/public/html/update.html")
+	ui.Load("http://" + constants.APP_WEBAPP_URL + "/public/html/update.html")
 
-	// Runs window code
-	uw.Run()
+	// Wait until window is closed
+	<-ui.Done()
 }
