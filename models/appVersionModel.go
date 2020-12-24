@@ -14,9 +14,12 @@ import (
 	"fmt"
 	"github.com/kovansky/dndEncounterCalculator/constants"
 	"github.com/kovansky/dndEncounterCalculator/models/enum"
+	"net"
 	"net/http"
+	"net/url"
 	"regexp"
 	"strconv"
+	"time"
 )
 
 type AppVersionModel struct {
@@ -78,31 +81,35 @@ func (avm *AppVersionModel) CheckForUpdates() (bool, int, int, int, enum.Version
 	// Get version check URL of channel
 	url := enum.GetVersionCheckUrlByChannel(avm.Channel)
 
-	// Opens URL, defers closing connection
-	resp, _ := http.Get(url)
-	defer resp.Body.Close()
+	if CheckInternetConnection(url) {
+		// Opens URL, defers closing connection
+		resp, _ := http.Get(url)
+		defer resp.Body.Close()
 
-	// Creates scanner to read the URL body
-	scanner := bufio.NewScanner(resp.Body)
+		// Creates scanner to read the URL body
+		scanner := bufio.NewScanner(resp.Body)
 
-	// Reads first line
-	scanner.Scan()
-	remoteVerStr := scanner.Text()
+		// Reads first line
+		scanner.Scan()
+		remoteVerStr := scanner.Text()
 
-	// Split latest (remote) version string into separate variables
-	rMajor, rMinor, rPatch, rChannel := versionFromString(remoteVerStr)
+		// Split latest (remote) version string into separate variables
+		rMajor, rMinor, rPatch, rChannel := versionFromString(remoteVerStr)
 
-	// Compare remote major, minor and patch with current ones
-	if (rMajor > avm.Major || rMinor > avm.Minor || rPatch > avm.Patch) && rChannel == avm.Channel {
-		// Update exists
-		avm.UpdateExists = true
-		avm.CheckedForUpdate = true
-		return true, rMajor, rMinor, rPatch, rChannel
+		// Compare remote major, minor and patch with current ones
+		if (rMajor > avm.Major || rMinor > avm.Minor || rPatch > avm.Patch) && rChannel == avm.Channel {
+			// Update exists
+			avm.UpdateExists = true
+			avm.CheckedForUpdate = true
+			return true, rMajor, rMinor, rPatch, rChannel
+		} else {
+			// This is latest version
+			avm.UpdateExists = false
+			avm.CheckedForUpdate = true
+			return false, 0, 0, 0, ""
+		}
 	} else {
-		// This is latest version
-		avm.UpdateExists = false
-		avm.CheckedForUpdate = true
-		return false, 0, 0, 0, ""
+		return false, -1, -1, -1, ""
 	}
 }
 
@@ -113,4 +120,25 @@ func (avm AppVersionModel) String() string {
 
 func (avm AppVersionModel) StringNoChannel() string {
 	return fmt.Sprintf("%d.%d.%d", avm.Major, avm.Minor, avm.Patch)
+}
+
+func CheckInternetConnection(urlString string) bool {
+	parsed, err := url.Parse(urlString)
+
+	if err != nil {
+		return false
+	}
+
+	host := parsed.Host
+	port := 80
+	timeoutSeconds := 5
+	timeout := time.Duration(timeoutSeconds) * time.Second
+
+	_, err = net.DialTimeout("tcp", host+":"+strconv.Itoa(port), timeout)
+
+	if err != nil {
+		return false
+	} else {
+		return true
+	}
 }

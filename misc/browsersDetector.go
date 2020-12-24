@@ -18,7 +18,7 @@ func EdgeDetector() bool {
 	} else {
 		k, err := registry.OpenKey(registry.CLASSES_ROOT, `Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\PackageRepository\Packages`, registry.READ)
 		if err != nil {
-			panic(err)
+			return false
 		}
 
 		subkeys, _ := k.ReadSubKeyNames(-1)
