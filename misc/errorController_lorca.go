@@ -13,6 +13,7 @@ import (
 	"github.com/kovansky/dndEncounterCalculator/constants"
 	"github.com/kovansky/dndEncounterCalculator/models"
 	"github.com/zserge/lorca"
+	"net/url"
 	"strconv"
 )
 
@@ -35,7 +36,7 @@ func LErrorWindow(ch chan int, model models.ErrorModel) {
 	fmt.Println("Error: #" + strconv.Itoa(model.ErrorNumber) + "; " + model.ErrorDescription)
 
 	// Opens Error View in window
-	ui.Load("data:text/html," + fmt.Sprintf(`<!doctype html>
+	ui.Load("data:text/html," + url.PathEscape(fmt.Sprintf(`<!doctype html>
 <html>
 <style>
     .btn {
@@ -189,7 +190,7 @@ func LErrorWindow(ch chan int, model models.ErrorModel) {
         retValue(1)
     })
 </script>
-</html>`, "http://"+constants.APP_WEBAPP_URL, model.ErrorNumber, model.ErrorDescription, "http://"+constants.APP_WEBAPP_URL))
+</html>`, "http://"+constants.APP_WEBAPP_URL, model.ErrorNumber, model.ErrorDescription, "http://"+constants.APP_WEBAPP_URL)))
 
 	// Wait until window is closed
 	<-ui.Done()
