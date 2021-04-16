@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="build windows [lorca]" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="dndEncounterCalculator" />
+    <working_directory value="$PROJECT_DIR$" />
+    <go_parameters value="-ldflags=&quot;-H windowsgui&quot; -tags lorca -o C:\Users\Stanley\GolandProjects\src\github.com\kovansky\dndEncounterCalculator\builds\ddc_lorca.exe" />
+    <envs>
+      <env name="GOOS" value="windows" />
+      <env name="GOARCH" value="amd64" />
+    </envs>
+    <kind value="PACKAGE" />
+    <filePath value="$PROJECT_DIR$" />
+    <package value="github.com/kovansky/dndEncounterCalculator" />
+    <directory value="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>

@@ -1,3 +1,5 @@
+// +build lorca
+
 /*
  * Copyright (c) 2020 by F4 Developer (Stanisław Kowański). This file is part of
  * dndEncounterCalculator project and is released under MIT License. For full license
@@ -10,11 +12,11 @@ Package main holds application startup code
 package main
 
 import (
-	"github.com/kovansky/dndEncounterCalculator/controllers"
+	controllers "github.com/kovansky/dndEncounterCalculator/controllers/lorca"
 	"github.com/kovansky/dndEncounterCalculator/misc"
 	"github.com/kovansky/dndEncounterCalculator/models"
 	"github.com/kovansky/dndEncounterCalculator/webapp"
-	"github.com/webview/webview"
+	"github.com/zserge/lorca"
 )
 
 //main is the heart of application, the runner of the rest of the program
@@ -37,21 +39,21 @@ func main() {
 
 		// If update avaliable, open Update Dialog
 		if isUpdate {
-			controllers.UpdateWindow(*appVersion, remoteAvm)
+			controllers.LUpdateWindow(*appVersion, remoteAvm)
 		}
 	}()
 
-	// Create new webview instance and defer destroying it
-	wv := webview.New(true)
-	defer wv.Destroy()
+	// Create lorca instance and defer closing it
+	ui, _ := lorca.New("", "", 100, 100)
+	defer ui.Close()
 
-	// Bind runError function for JS to be avaliable in all views using this webview instance
-	err := wv.Bind("runError", misc.ThrowError)
+	// Bind runError function for JS to be avaliable in all views using this lorca instance
+	err := ui.Bind("runError", misc.ThrowError)
 	misc.Check(err)
 
-	// Run first window - party window
-	controllers.PartyWindow(wv)
+	// Run first window
+	controllers.LPartyWindow(ui)
 
-	// Runs window code
-	wv.Run()
+	// Wait until done
+	<-ui.Done()
 }

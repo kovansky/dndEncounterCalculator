@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="build windows" type="GoApplicationRunConfiguration" factoryName="Go Application">
+  <configuration default="false" name="build windows [main]" type="GoApplicationRunConfiguration" factoryName="Go Application">
     <module name="dndEncounterCalculator" />
     <working_directory value="$PROJECT_DIR$" />
-    <go_parameters value="-ldflags=&quot;-H windowsgui&quot;" />
+    <go_parameters value="-ldflags=&quot;-H windowsgui&quot; -o C:\Users\Stanley\GolandProjects\src\github.com\kovansky\dndEncounterCalculator\builds\ddc_main.exe" />
     <envs>
       <env name="GOOS" value="windows" />
       <env name="GOARCH" value="amd64" />
@@ -11,8 +11,6 @@
     <filePath value="$PROJECT_DIR$" />
     <package value="github.com/kovansky/dndEncounterCalculator" />
     <directory value="$PROJECT_DIR$" />
-    <output_directory value="$PROJECT_DIR$/builds" />
-    <option name="run" value="false" />
     <method v="2" />
   </configuration>
 </component>

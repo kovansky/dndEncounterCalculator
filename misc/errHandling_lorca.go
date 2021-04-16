@@ -1,4 +1,4 @@
-// +build !lorca
+// +build lorca
 
 /*
  * Copyright (c) 2020 by F4 Developer (Stanisław Kowański). This file is part of
@@ -46,8 +46,8 @@ func ThrowErrorGo(model models.ErrorModel) int {
 	// Create channel, that reads dialog output
 	ch := make(chan int)
 
-	// Open dialog (webview)
-	go ErrorWindow(ch, model)
+	// Open dialog (lorca)
+	go LErrorWindow(ch, model)
 
 	// Return dialog output
 	return <-ch
